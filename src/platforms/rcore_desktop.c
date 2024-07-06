@@ -1324,6 +1324,18 @@ int InitPlatform(void)
         glfwWindowHint(GLFW_SAMPLES, 4);   // Tries to enable multisampling x4 (MSAA), default is 0
     }
 
+    if (CORE.Window.flags & FLAG_NOERROR_CONTEXT) {
+        if (rlGetVersion() == RL_OPENGL_46)
+        {
+            TRACELOG(LOG_INFO, "CONTEXT: Trying to enable NOERROR context");
+            glfwWindowHint(GLFW_CONTEXT_NO_ERROR, GLFW_TRUE);
+        }
+        else
+        {
+            TRACELOG(LOG_WARNING, "NOERROR contexts are only supported in OpenGL 4.6");
+        }
+    }
+
     // NOTE: When asking for an OpenGL context version, most drivers provide the highest supported version
     // with backward compatibility to older OpenGL versions.
     // For example, if using OpenGL 1.1, driver can provide a 4.3 backwards compatible context.
@@ -1351,6 +1363,16 @@ int InitPlatform(void)
     {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);          // Choose OpenGL major version (just hint)
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);          // Choose OpenGL minor version (just hint)
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_FALSE);
+#if defined(RLGL_ENABLE_OPENGL_DEBUG_CONTEXT)
+        glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);   // Enable OpenGL Debug Context
+#endif
+    }
+    else if (rlGetVersion() == RL_OPENGL_46)
+    {
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);          // Choose OpenGL major version (just hint)
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);          // Choose OpenGL minor version (just hint)
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_FALSE);
 #if defined(RLGL_ENABLE_OPENGL_DEBUG_CONTEXT)
