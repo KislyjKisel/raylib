@@ -1,3 +1,13 @@
+This fork extends raylib with some features to make it easier to develop Lean4 bindings for it.
+It also has some extensions I've intended to use.
+
+* Audio callbacks accept userdata pointer as a parameter
+* Audio thread entry/exit callbacks
+* Windowing backend window handle access
+* OpenGL 4.6 context option
+
+---
+
 <img align="left" style="width:260px" src="https://github.com/raysan5/raylib/blob/master/logo/raylib_logo_animation.gif" width="288px">
 
 **raylib is a simple and easy-to-use library to enjoy videogames programming.**
