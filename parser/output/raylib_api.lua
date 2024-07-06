@@ -3072,7 +3072,8 @@ return {
       returnType = "void",
       params = {
         {type = "void *", name = "bufferData"},
-        {type = "unsigned int", name = "frames"}
+        {type = "unsigned int", name = "frames"},
+        {type = "void*", name = "userdata"}
       }
     },
     {
@@ -3282,6 +3283,11 @@ return {
     {
       name = "GetWindowHandle",
       description = "Get native window handle",
+      returnType = "void *"
+    },
+    {
+      name = "GetWindowBackendHandle",
+      description = "Get GLFWwindow/SDL_Window/RGFW_window pointer or NULL",
       returnType = "void *"
     },
     {
@@ -7973,8 +7979,8 @@ return {
     },
     {
       name = "UnloadAudioStream",
-      description = "Unload audio stream and free memory",
-      returnType = "void",
+      description = "Unload audio stream and free memory. Returns userdata",
+      returnType = "void*",
       params = {
         {type = "AudioStream", name = "stream"}
       }
@@ -8078,7 +8084,8 @@ return {
       returnType = "void",
       params = {
         {type = "AudioStream", name = "stream"},
-        {type = "AudioCallback", name = "callback"}
+        {type = "AudioCallback", name = "callback"},
+        {type = "void*", name = "userdata"}
       }
     },
     {
@@ -8087,16 +8094,18 @@ return {
       returnType = "void",
       params = {
         {type = "AudioStream", name = "stream"},
-        {type = "AudioCallback", name = "processor"}
+        {type = "AudioCallback", name = "processor"},
+        {type = "void*", name = "userdata"}
       }
     },
     {
       name = "DetachAudioStreamProcessor",
-      description = "Detach audio stream processor from stream",
-      returnType = "void",
+      description = "Detach audio stream processor from stream. Returns whether any processor was detached",
+      returnType = "bool",
       params = {
         {type = "AudioStream", name = "stream"},
-        {type = "AudioCallback", name = "processor"}
+        {type = "AudioCallback", name = "processor"},
+        {type = "void*", name = "userdata"}
       }
     },
     {
@@ -8104,15 +8113,17 @@ return {
       description = "Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'",
       returnType = "void",
       params = {
-        {type = "AudioCallback", name = "processor"}
+        {type = "AudioCallback", name = "processor"},
+        {type = "void*", name = "userdata"}
       }
     },
     {
       name = "DetachAudioMixedProcessor",
-      description = "Detach audio stream processor from the entire audio pipeline",
-      returnType = "void",
+      description = "Detach audio stream processor from the entire audio pipeline. Returns whether any processor was detached",
+      returnType = "bool",
       params = {
-        {type = "AudioCallback", name = "processor"}
+        {type = "AudioCallback", name = "processor"},
+        {type = "void*", name = "userdata"}
       }
     },
     {

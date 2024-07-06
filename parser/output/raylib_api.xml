@@ -665,9 +665,10 @@
             <Param type="const char *" name="fileName" desc="" />
             <Param type="char *" name="text" desc="" />
         </Callback>
-        <Callback name="AudioCallback" retType="void" paramCount="2" desc="">
+        <Callback name="AudioCallback" retType="void" paramCount="3" desc="">
             <Param type="void *" name="bufferData" desc="" />
             <Param type="unsigned int" name="frames" desc="" />
+            <Param type="void*" name="userdata" desc="" />
         </Callback>
         <Callback name="AudioThreadEntryCallback" retType="void" paramCount="1" desc="">
             <Param type="" name="" desc="" />
@@ -676,7 +677,7 @@
             <Param type="" name="" desc="" />
         </Callback>
     </Callbacks>
-    <Functions count="568">
+    <Functions count="569">
         <Function name="InitWindow" retType="void" paramCount="3" desc="Initialize window and OpenGL context">
             <Param type="int" name="width" desc="" />
             <Param type="int" name="height" desc="" />
@@ -754,6 +755,8 @@
         <Function name="SetWindowFocused" retType="void" paramCount="0" desc="Set window focused (only PLATFORM_DESKTOP)">
         </Function>
         <Function name="GetWindowHandle" retType="void *" paramCount="0" desc="Get native window handle">
+        </Function>
+        <Function name="GetWindowBackendHandle" retType="void *" paramCount="0" desc="Get GLFWwindow/SDL_Window/RGFW_window pointer or NULL">
         </Function>
         <Function name="GetScreenWidth" retType="int" paramCount="0" desc="Get current screen width">
         </Function>
@@ -2970,7 +2973,7 @@
         <Function name="IsAudioStreamReady" retType="bool" paramCount="1" desc="Checks if an audio stream is ready">
             <Param type="AudioStream" name="stream" desc="" />
         </Function>
-        <Function name="UnloadAudioStream" retType="void" paramCount="1" desc="Unload audio stream and free memory">
+        <Function name="UnloadAudioStream" retType="void*" paramCount="1" desc="Unload audio stream and free memory. Returns userdata">
             <Param type="AudioStream" name="stream" desc="" />
         </Function>
         <Function name="UpdateAudioStream" retType="void" paramCount="3" desc="Update audio stream buffers with data">
@@ -3011,23 +3014,28 @@
         <Function name="SetAudioStreamBufferSizeDefault" retType="void" paramCount="1" desc="Default size for new audio streams">
             <Param type="int" name="size" desc="" />
         </Function>
-        <Function name="SetAudioStreamCallback" retType="void" paramCount="2" desc="Audio thread callback to request new data">
+        <Function name="SetAudioStreamCallback" retType="void" paramCount="3" desc="Audio thread callback to request new data">
             <Param type="AudioStream" name="stream" desc="" />
             <Param type="AudioCallback" name="callback" desc="" />
+            <Param type="void*" name="userdata" desc="" />
         </Function>
-        <Function name="AttachAudioStreamProcessor" retType="void" paramCount="2" desc="Attach audio stream processor to stream, receives the samples as 'float'">
+        <Function name="AttachAudioStreamProcessor" retType="void" paramCount="3" desc="Attach audio stream processor to stream, receives the samples as 'float'">
             <Param type="AudioStream" name="stream" desc="" />
             <Param type="AudioCallback" name="processor" desc="" />
+            <Param type="void*" name="userdata" desc="" />
         </Function>
-        <Function name="DetachAudioStreamProcessor" retType="void" paramCount="2" desc="Detach audio stream processor from stream">
+        <Function name="DetachAudioStreamProcessor" retType="bool" paramCount="3" desc="Detach audio stream processor from stream. Returns whether any processor was detached">
             <Param type="AudioStream" name="stream" desc="" />
             <Param type="AudioCallback" name="processor" desc="" />
+            <Param type="void*" name="userdata" desc="" />
         </Function>
-        <Function name="AttachAudioMixedProcessor" retType="void" paramCount="1" desc="Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'">
+        <Function name="AttachAudioMixedProcessor" retType="void" paramCount="2" desc="Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'">
             <Param type="AudioCallback" name="processor" desc="" />
+            <Param type="void*" name="userdata" desc="" />
         </Function>
-        <Function name="DetachAudioMixedProcessor" retType="void" paramCount="1" desc="Detach audio stream processor from the entire audio pipeline">
+        <Function name="DetachAudioMixedProcessor" retType="bool" paramCount="2" desc="Detach audio stream processor from the entire audio pipeline. Returns whether any processor was detached">
             <Param type="AudioCallback" name="processor" desc="" />
+            <Param type="void*" name="userdata" desc="" />
         </Function>
         <Function name="SetAudioThreadEntryCallback" retType="void" paramCount="1" desc="Audio thread creation callback (usually should be called before audio device initialization, can be NULL)">
             <Param type="AudioThreadEntryCallback" name="callback" desc="" />

@@ -3111,6 +3111,10 @@
         {
           "type": "unsigned int",
           "name": "frames"
+        },
+        {
+          "type": "void*",
+          "name": "userdata"
         }
       ]
     },
@@ -3387,6 +3391,11 @@
     {
       "name": "GetWindowHandle",
       "description": "Get native window handle",
+      "returnType": "void *"
+    },
+    {
+      "name": "GetWindowBackendHandle",
+      "description": "Get GLFWwindow/SDL_Window/RGFW_window pointer or NULL",
       "returnType": "void *"
     },
     {
@@ -11603,8 +11612,8 @@
     },
     {
       "name": "UnloadAudioStream",
-      "description": "Unload audio stream and free memory",
-      "returnType": "void",
+      "description": "Unload audio stream and free memory. Returns userdata",
+      "returnType": "void*",
       "params": [
         {
           "type": "AudioStream",
@@ -11765,6 +11774,10 @@
         {
           "type": "AudioCallback",
           "name": "callback"
+        },
+        {
+          "type": "void*",
+          "name": "userdata"
         }
       ]
     },
@@ -11780,13 +11793,17 @@
         {
           "type": "AudioCallback",
           "name": "processor"
+        },
+        {
+          "type": "void*",
+          "name": "userdata"
         }
       ]
     },
     {
       "name": "DetachAudioStreamProcessor",
-      "description": "Detach audio stream processor from stream",
-      "returnType": "void",
+      "description": "Detach audio stream processor from stream. Returns whether any processor was detached",
+      "returnType": "bool",
       "params": [
         {
           "type": "AudioStream",
@@ -11795,6 +11812,10 @@
         {
           "type": "AudioCallback",
           "name": "processor"
+        },
+        {
+          "type": "void*",
+          "name": "userdata"
         }
       ]
     },
@@ -11806,17 +11827,25 @@
         {
           "type": "AudioCallback",
           "name": "processor"
+        },
+        {
+          "type": "void*",
+          "name": "userdata"
         }
       ]
     },
     {
       "name": "DetachAudioMixedProcessor",
-      "description": "Detach audio stream processor from the entire audio pipeline",
-      "returnType": "void",
+      "description": "Detach audio stream processor from the entire audio pipeline. Returns whether any processor was detached",
+      "returnType": "bool",
       "params": [
         {
           "type": "AudioCallback",
           "name": "processor"
+        },
+        {
+          "type": "void*",
+          "name": "userdata"
         }
       ]
     },
