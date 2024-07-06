@@ -582,7 +582,7 @@ Alias 005: Camera
 
 Enums found: 21
 
-Enum 01: ConfigFlags (16 values)
+Enum 01: ConfigFlags (17 values)
   Name: ConfigFlags
   Description: System/Window config flags
   Value[FLAG_VSYNC_HINT]: 64
@@ -601,6 +601,7 @@ Enum 01: ConfigFlags (16 values)
   Value[FLAG_BORDERLESS_WINDOWED_MODE]: 32768
   Value[FLAG_MSAA_4X_HINT]: 32
   Value[FLAG_INTERLACED_HINT]: 65536
+  Value[FLAG_NOERROR_CONTEXT]: 131072
 Enum 02: TraceLogLevel (8 values)
   Name: TraceLogLevel
   Description: Trace log level

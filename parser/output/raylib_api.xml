@@ -302,7 +302,7 @@
         <Alias type="Camera" name="Camera3D" desc="Camera type fallback, defaults to Camera3D" />
     </Aliases>
     <Enums count="21">
-        <Enum name="ConfigFlags" valueCount="16" desc="System/Window config flags">
+        <Enum name="ConfigFlags" valueCount="17" desc="System/Window config flags">
             <Value name="FLAG_VSYNC_HINT" integer="64" desc="Set to try enabling V-Sync on GPU" />
             <Value name="FLAG_FULLSCREEN_MODE" integer="2" desc="Set to run program in fullscreen" />
             <Value name="FLAG_WINDOW_RESIZABLE" integer="4" desc="Set to allow resizable window" />
@@ -319,6 +319,7 @@
             <Value name="FLAG_BORDERLESS_WINDOWED_MODE" integer="32768" desc="Set to run program in borderless windowed mode" />
             <Value name="FLAG_MSAA_4X_HINT" integer="32" desc="Set to try enabling MSAA 4X" />
             <Value name="FLAG_INTERLACED_HINT" integer="65536" desc="Set to try enabling interlaced video format (for V3D)" />
+            <Value name="FLAG_NOERROR_CONTEXT" integer="131072" desc="Set to try enabling NOERROR context (OpenGL 4.6 only)" />
         </Enum>
         <Enum name="TraceLogLevel" valueCount="8" desc="Trace log level">
             <Value name="LOG_ALL" integer="0" desc="Display all logs" />

@@ -1485,6 +1485,11 @@
           "name": "FLAG_INTERLACED_HINT",
           "value": 65536,
           "description": "Set to try enabling interlaced video format (for V3D)"
+        },
+        {
+          "name": "FLAG_NOERROR_CONTEXT",
+          "value": 131072,
+          "description": "Set to try enabling NOERROR context (OpenGL 4.6 only)"
         }
       ]
     },
