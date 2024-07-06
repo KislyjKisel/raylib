@@ -984,6 +984,7 @@ RLAPI void SetWindowSize(int width, int height);                  // Set window 
 RLAPI void SetWindowOpacity(float opacity);                       // Set window opacity [0.0f..1.0f] (only PLATFORM_DESKTOP)
 RLAPI void SetWindowFocused(void);                                // Set window focused (only PLATFORM_DESKTOP)
 RLAPI void *GetWindowHandle(void);                                // Get native window handle
+RLAPI void *GetWindowBackendHandle(void);                         // Get GLFWwindow/SDL_Window/RGFW_window pointer or NULL
 RLAPI int GetScreenWidth(void);                                   // Get current screen width
 RLAPI int GetScreenHeight(void);                                  // Get current screen height
 RLAPI int GetRenderWidth(void);                                   // Get current render width (it considers HiDPI)
@@ -1595,7 +1596,7 @@ RLAPI RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 
 //------------------------------------------------------------------------------------
 // Audio Loading and Playing Functions (Module: audio)
 //------------------------------------------------------------------------------------
-typedef void (*AudioCallback)(void *bufferData, unsigned int frames);
+typedef void (*AudioCallback)(void *bufferData, unsigned int frames, void* userdata);
 typedef void (*AudioThreadEntryCallback)(void);
 typedef void (*AudioThreadExitCallback)(void);
 
@@ -1657,7 +1658,7 @@ RLAPI float GetMusicTimePlayed(Music music);                          // Get cur
 // AudioStream management functions
 RLAPI AudioStream LoadAudioStream(unsigned int sampleRate, unsigned int sampleSize, unsigned int channels); // Load audio stream (to stream raw audio pcm data)
 RLAPI bool IsAudioStreamReady(AudioStream stream);                    // Checks if an audio stream is ready
-RLAPI void UnloadAudioStream(AudioStream stream);                     // Unload audio stream and free memory
+RLAPI void* UnloadAudioStream(AudioStream stream);                     // Unload audio stream and free memory. Returns userdata
 RLAPI void UpdateAudioStream(AudioStream stream, const void *data, int frameCount); // Update audio stream buffers with data
 RLAPI bool IsAudioStreamProcessed(AudioStream stream);                // Check if any audio stream buffers requires refill
 RLAPI void PlayAudioStream(AudioStream stream);                       // Play audio stream
@@ -1669,13 +1670,13 @@ RLAPI void SetAudioStreamVolume(AudioStream stream, float volume);    // Set vol
 RLAPI void SetAudioStreamPitch(AudioStream stream, float pitch);      // Set pitch for audio stream (1.0 is base level)
 RLAPI void SetAudioStreamPan(AudioStream stream, float pan);          // Set pan for audio stream (0.5 is centered)
 RLAPI void SetAudioStreamBufferSizeDefault(int size);                 // Default size for new audio streams
-RLAPI void SetAudioStreamCallback(AudioStream stream, AudioCallback callback); // Audio thread callback to request new data
+RLAPI void SetAudioStreamCallback(AudioStream stream, AudioCallback callback, void* userdata); // Audio thread callback to request new data
 
-RLAPI void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor); // Attach audio stream processor to stream, receives the samples as 'float'
-RLAPI void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor); // Detach audio stream processor from stream
+RLAPI void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor, void* userdata); // Attach audio stream processor to stream, receives the samples as 'float'
+RLAPI bool DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor, void* userdata); // Detach audio stream processor from stream. Returns whether any processor was detached
 
-RLAPI void AttachAudioMixedProcessor(AudioCallback processor); // Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
-RLAPI void DetachAudioMixedProcessor(AudioCallback processor); // Detach audio stream processor from the entire audio pipeline
+RLAPI void AttachAudioMixedProcessor(AudioCallback processor, void* userdata); // Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
+RLAPI bool DetachAudioMixedProcessor(AudioCallback processor, void* userdata); // Detach audio stream processor from the entire audio pipeline. Returns whether any processor was detached
 
 RLAPI void SetAudioThreadEntryCallback(AudioThreadEntryCallback callback); // Audio thread creation callback (usually should be called before audio device initialization, can be NULL)
 RLAPI void SetAudioThreadExitCallback(AudioThreadExitCallback callback); // Audio thread destruction callback (can be NULL)

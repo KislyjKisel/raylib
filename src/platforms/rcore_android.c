@@ -423,6 +423,11 @@ void *GetWindowHandle(void)
     return NULL;
 }
 
+void *GetWindowBackendHandle(void) {
+    TRACELOG(LOG_WARNING, "GetWindowBackendHandle() not implemented on target platform");
+    return NULL;
+}
+
 // Get number of monitors
 int GetMonitorCount(void)
 {

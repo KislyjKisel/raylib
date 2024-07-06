@@ -438,6 +438,10 @@ void *GetWindowHandle(void)
     #endif
 }
 
+void *GetWindowBackendHandle(void) {
+    return (void*)platform.window;
+}
+
 // Get number of monitors
 int GetMonitorCount(void)
 {
