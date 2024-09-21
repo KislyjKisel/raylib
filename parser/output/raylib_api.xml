@@ -683,7 +683,7 @@
             <Param type="" name="" desc="" />
         </Callback>
     </Callbacks>
-    <Functions count="577">
+    <Functions count="580">
         <Function name="InitWindow" retType="void" paramCount="3" desc="Initialize window and OpenGL context">
             <Param type="int" name="width" desc="" />
             <Param type="int" name="height" desc="" />
