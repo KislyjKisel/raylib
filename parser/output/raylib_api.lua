@@ -15,7 +15,7 @@ return {
     {
       name = "RAYLIB_VERSION_MINOR",
       type = "INT",
-      value = 1,
+      value = 5,
       description = ""
     },
     {
@@ -27,7 +27,7 @@ return {
     {
       name = "RAYLIB_VERSION",
       type = "STRING",
-      value = "5.1-dev",
+      value = "5.5-dev",
       description = ""
     },
     {
@@ -850,12 +850,22 @@ return {
         {
           type = "unsigned char *",
           name = "boneIds",
-          description = "Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning)"
+          description = "Vertex bone ids, max 255 bone ids, up to 4 bones influence by vertex (skinning) (shader-location = 6)"
         },
         {
           type = "float *",
           name = "boneWeights",
-          description = "Vertex bone weight, up to 4 bones influence by vertex (skinning)"
+          description = "Vertex bone weight, up to 4 bones influence by vertex (skinning) (shader-location = 7)"
+        },
+        {
+          type = "Matrix *",
+          name = "boneMatrices",
+          description = "Bones animated transformation matrices"
+        },
+        {
+          type = "int",
+          name = "boneCount",
+          description = "Number of bones"
         },
         {
           type = "unsigned int",
@@ -1058,7 +1068,7 @@ return {
         {
           type = "Vector3",
           name = "direction",
-          description = "Ray direction"
+          description = "Ray direction (normalized)"
         }
       }
     },
@@ -2523,6 +2533,21 @@ return {
           name = "SHADER_LOC_MAP_BRDF",
           value = 25,
           description = "Shader location: sampler2d texture: brdf"
+        },
+        {
+          name = "SHADER_LOC_VERTEX_BONEIDS",
+          value = 26,
+          description = "Shader location: vertex attribute: boneIds"
+        },
+        {
+          name = "SHADER_LOC_VERTEX_BONEWEIGHTS",
+          value = 27,
+          description = "Shader location: vertex attribute: boneWeights"
+        },
+        {
+          name = "SHADER_LOC_BONE_MATRICES",
+          value = 28,
+          description = "Shader location: array of matrices uniform: boneMatrices"
         }
       }
     },
@@ -3180,12 +3205,12 @@ return {
     },
     {
       name = "ToggleFullscreen",
-      description = "Toggle window state: fullscreen/windowed (only PLATFORM_DESKTOP)",
+      description = "Toggle window state: fullscreen/windowed [resizes monitor to match window resolution] (only PLATFORM_DESKTOP)",
       returnType = "void"
     },
     {
       name = "ToggleBorderlessWindowed",
-      description = "Toggle window state: borderless windowed (only PLATFORM_DESKTOP)",
+      description = "Toggle window state: borderless windowed [resizes window to match monitor resolution] (only PLATFORM_DESKTOP)",
       returnType = "void"
     },
     {
@@ -4103,7 +4128,7 @@ return {
     },
     {
       name = "LoadDirectoryFilesEx",
-      description = "Load directory filepaths with extension filtering and recursive directory scan",
+      description = "Load directory filepaths with extension filtering and recursive directory scan. Use 'DIR' in the filter string to include directories in the result",
       returnType = "FilePathList",
       params = {
         {type = "const char *", name = "basePath"},
@@ -4724,8 +4749,8 @@ return {
         {type = "int", name = "centerX"},
         {type = "int", name = "centerY"},
         {type = "float", name = "radius"},
-        {type = "Color", name = "color1"},
-        {type = "Color", name = "color2"}
+        {type = "Color", name = "inner"},
+        {type = "Color", name = "outer"}
       }
     },
     {
@@ -4862,8 +4887,8 @@ return {
         {type = "int", name = "posY"},
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "color1"},
-        {type = "Color", name = "color2"}
+        {type = "Color", name = "top"},
+        {type = "Color", name = "bottom"}
       }
     },
     {
@@ -4875,8 +4900,8 @@ return {
         {type = "int", name = "posY"},
         {type = "int", name = "width"},
         {type = "int", name = "height"},
-        {type = "Color", name = "color1"},
-        {type = "Color", name = "color2"}
+        {type = "Color", name = "left"},
+        {type = "Color", name = "right"}
       }
     },
     {
@@ -4885,10 +4910,10 @@ return {
       returnType = "void",
       params = {
         {type = "Rectangle", name = "rec"},
-        {type = "Color", name = "col1"},
-        {type = "Color", name = "col2"},
-        {type = "Color", name = "col3"},
-        {type = "Color", name = "col4"}
+        {type = "Color", name = "topLeft"},
+        {type = "Color", name = "bottomLeft"},
+        {type = "Color", name = "topRight"},
+        {type = "Color", name = "bottomRight"}
       }
     },
     {
@@ -5549,6 +5574,15 @@ return {
       }
     },
     {
+      name = "ImageFromChannel",
+      description = "Create an image from a selected channel of another image (GRAYSCALE)",
+      returnType = "Image",
+      params = {
+        {type = "Image", name = "image"},
+        {type = "int", name = "selectedChannel"}
+      }
+    },
+    {
       name = "ImageText",
       description = "Create an image from text (default font)",
       returnType = "Image",
@@ -5644,11 +5678,11 @@ return {
     },
     {
       name = "ImageKernelConvolution",
-      description = "Apply Custom Square image convolution kernel",
+      description = "Apply custom square convolution kernel to image",
       returnType = "void",
       params = {
         {type = "Image *", name = "image"},
-        {type = "float *", name = "kernel"},
+        {type = "const float *", name = "kernel"},
         {type = "int", name = "kernelSize"}
       }
     },
@@ -5907,6 +5941,18 @@ return {
       }
     },
     {
+      name = "ImageDrawLineEx",
+      description = "Draw a line defining thickness within an image",
+      returnType = "void",
+      params = {
+        {type = "Image *", name = "dst"},
+        {type = "Vector2", name = "start"},
+        {type = "Vector2", name = "end"},
+        {type = "int", name = "thick"},
+        {type = "Color", name = "color"}
+      }
+    },
+    {
       name = "ImageDrawCircle",
       description = "Draw a filled circle within an image",
       returnType = "void",
@@ -5994,6 +6040,66 @@ return {
         {type = "Image *", name = "dst"},
         {type = "Rectangle", name = "rec"},
         {type = "int", name = "thick"},
+        {type = "Color", name = "color"}
+      }
+    },
+    {
+      name = "ImageDrawTriangle",
+      description = "Draw triangle within an image",
+      returnType = "void",
+      params = {
+        {type = "Image *", name = "dst"},
+        {type = "Vector2", name = "v1"},
+        {type = "Vector2", name = "v2"},
+        {type = "Vector2", name = "v3"},
+        {type = "Color", name = "color"}
+      }
+    },
+    {
+      name = "ImageDrawTriangleEx",
+      description = "Draw triangle with interpolated colors within an image",
+      returnType = "void",
+      params = {
+        {type = "Image *", name = "dst"},
+        {type = "Vector2", name = "v1"},
+        {type = "Vector2", name = "v2"},
+        {type = "Vector2", name = "v3"},
+        {type = "Color", name = "c1"},
+        {type = "Color", name = "c2"},
+        {type = "Color", name = "c3"}
+      }
+    },
+    {
+      name = "ImageDrawTriangleLines",
+      description = "Draw triangle outline within an image",
+      returnType = "void",
+      params = {
+        {type = "Image *", name = "dst"},
+        {type = "Vector2", name = "v1"},
+        {type = "Vector2", name = "v2"},
+        {type = "Vector2", name = "v3"},
+        {type = "Color", name = "color"}
+      }
+    },
+    {
+      name = "ImageDrawTriangleFan",
+      description = "Draw a triangle fan defined by points within an image (first vertex is the center)",
+      returnType = "void",
+      params = {
+        {type = "Image *", name = "dst"},
+        {type = "Vector2 *", name = "points"},
+        {type = "int", name = "pointCount"},
+        {type = "Color", name = "color"}
+      }
+    },
+    {
+      name = "ImageDrawTriangleStrip",
+      description = "Draw a triangle strip defined by points within an image",
+      returnType = "void",
+      params = {
+        {type = "Image *", name = "dst"},
+        {type = "Vector2 *", name = "points"},
+        {type = "int", name = "pointCount"},
         {type = "Color", name = "color"}
       }
     },
@@ -6324,6 +6430,16 @@ return {
       }
     },
     {
+      name = "ColorLerp",
+      description = "Get color lerp interpolation between two colors, factor [0.0f..1.0f]",
+      returnType = "Color",
+      params = {
+        {type = "Color", name = "color1"},
+        {type = "Color", name = "color2"},
+        {type = "float", name = "factor"}
+      }
+    },
+    {
       name = "GetColor",
       description = "Get Color structure from hexadecimal value",
       returnType = "Color",
@@ -6375,7 +6491,7 @@ return {
     },
     {
       name = "LoadFontEx",
-      description = "Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character setFont",
+      description = "Load font from file with extended parameters, use NULL for codepoints and 0 for codepointCount to load the default character set, font size is provided in pixels height",
       returnType = "Font",
       params = {
         {type = "const char *", name = "fileName"},
@@ -7160,6 +7276,30 @@ return {
       }
     },
     {
+      name = "DrawModelPoints",
+      description = "Draw a model as points",
+      returnType = "void",
+      params = {
+        {type = "Model", name = "model"},
+        {type = "Vector3", name = "position"},
+        {type = "float", name = "scale"},
+        {type = "Color", name = "tint"}
+      }
+    },
+    {
+      name = "DrawModelPointsEx",
+      description = "Draw a model as points with extended parameters",
+      returnType = "void",
+      params = {
+        {type = "Model", name = "model"},
+        {type = "Vector3", name = "position"},
+        {type = "Vector3", name = "rotationAxis"},
+        {type = "float", name = "rotationAngle"},
+        {type = "Vector3", name = "scale"},
+        {type = "Color", name = "tint"}
+      }
+    },
+    {
       name = "DrawBoundingBox",
       description = "Draw bounding box (wires)",
       returnType = "void",
@@ -7176,7 +7316,7 @@ return {
         {type = "Camera", name = "camera"},
         {type = "Texture2D", name = "texture"},
         {type = "Vector3", name = "position"},
-        {type = "float", name = "size"},
+        {type = "float", name = "scale"},
         {type = "Color", name = "tint"}
       }
     },
@@ -7496,6 +7636,16 @@ return {
       params = {
         {type = "Model", name = "model"},
         {type = "ModelAnimation", name = "anim"}
+      }
+    },
+    {
+      name = "UpdateModelAnimationBoneMatrices",
+      description = "Update model animation mesh bone matrices",
+      returnType = "void",
+      params = {
+        {type = "Model", name = "model"},
+        {type = "ModelAnimation", name = "anim"},
+        {type = "int", name = "frame"}
       }
     },
     {
