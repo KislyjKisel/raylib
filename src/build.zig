@@ -307,20 +307,12 @@ pub const OpenglVersion = enum {
 
     pub fn toCMacroStr(self: @This()) []const u8 {
         switch (self) {
-<<<<<<< HEAD
             .auto => @panic("OpenglVersion.auto cannot be turned into a C macro string"),
             .gl_1_1 => return "GRAPHICS_API_OPENGL_11",
             .gl_2_1 => return "GRAPHICS_API_OPENGL_21",
             .gl_3_3 => return "GRAPHICS_API_OPENGL_33",
             .gl_4_3 => return "GRAPHICS_API_OPENGL_43",
             .gl_4_6 => return "GRAPHICS_API_OPENGL_46",
-=======
-            .auto => @panic("OpenglVersion.auto cannot be turned into a C macro string"),
-            .gl_1_1 => return "GRAPHICS_API_OPENGL_11",
-            .gl_2_1 => return "GRAPHICS_API_OPENGL_21",
-            .gl_3_3 => return "GRAPHICS_API_OPENGL_33",
-            .gl_4_3 => return "GRAPHICS_API_OPENGL_43",
->>>>>>> origin/master
             .gles_2 => return "GRAPHICS_API_OPENGL_ES2",
             .gles_3 => return "GRAPHICS_API_OPENGL_ES3",
         }
