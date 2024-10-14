@@ -354,14 +354,17 @@
 #ifndef RL_DEFAULT_SHADER_ATTRIB_LOCATION_TEXCOORD2
     #define RL_DEFAULT_SHADER_ATTRIB_LOCATION_TEXCOORD2   5
 #endif
+#ifndef RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES
+    #define RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES     6
+#endif
+
+#ifdef RL_SUPPORT_MESH_GPU_SKINNING
 #ifndef RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEIDS
-    #define RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEIDS     6
+    #define RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEIDS     7
 #endif
 #ifndef RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEWEIGHTS
-    #define RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEWEIGHTS 7
+    #define RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEWEIGHTS 8
 #endif
-#ifndef RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES
-    #define RL_DEFAULT_SHADER_ATTRIB_LOCATION_INDICES   6
 #endif
 
 //----------------------------------------------------------------------------------
@@ -4183,8 +4186,11 @@ unsigned int rlLoadShaderProgram(unsigned int vShaderId, unsigned int fShaderId)
     glBindAttribLocation(program, RL_DEFAULT_SHADER_ATTRIB_LOCATION_COLOR, RL_DEFAULT_SHADER_ATTRIB_NAME_COLOR);
     glBindAttribLocation(program, RL_DEFAULT_SHADER_ATTRIB_LOCATION_TANGENT, RL_DEFAULT_SHADER_ATTRIB_NAME_TANGENT);
     glBindAttribLocation(program, RL_DEFAULT_SHADER_ATTRIB_LOCATION_TEXCOORD2, RL_DEFAULT_SHADER_ATTRIB_NAME_TEXCOORD2);
+
+#ifdef RL_SUPPORT_MESH_GPU_SKINNING
     glBindAttribLocation(program, RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEIDS, RL_DEFAULT_SHADER_ATTRIB_NAME_BONEIDS);
     glBindAttribLocation(program, RL_DEFAULT_SHADER_ATTRIB_LOCATION_BONEWEIGHTS, RL_DEFAULT_SHADER_ATTRIB_NAME_BONEWEIGHTS);
+#endif
 
     // NOTE: If some attrib name is no found on the shader, it locations becomes -1
 
@@ -4285,7 +4291,7 @@ void rlSetUniform(int locIndex, const void *value, int uniformType, int count)
     #endif
         case RL_SHADER_UNIFORM_SAMPLER2D: glUniform1iv(locIndex, count, (int *)value); break;
         default: TRACELOG(RL_LOG_WARNING, "SHADER: Failed to set uniform value, data type not recognized");
-        
+
         // TODO: Support glUniform1uiv(), glUniform2uiv(), glUniform3uiv(), glUniform4uiv()
     }
 #endif

@@ -1721,6 +1721,11 @@ Function 134: GetApplicationDirectory() (0 input parameters)
   Return type: const char *
   Description: Get the directory of the running application (uses static string)
   No input parameters
+Function 134: MakeDirectory() (1 input parameters)
+  Name: MakeDirectory
+  Return type: int
+  Description: Create directories (including full path requested), returns 0 on success
+  Param[1]: dirPath (type: const char *)
 Function 135: ChangeDirectory() (1 input parameters)
   Name: ChangeDirectory
   Return type: bool
@@ -2114,14 +2119,14 @@ Function 207: GetShapesTextureRectangle() (0 input parameters)
 Function 208: DrawPixel() (3 input parameters)
   Name: DrawPixel
   Return type: void
-  Description: Draw a pixel
+  Description: Draw a pixel using geometry [Can be slow, use with care]
   Param[1]: posX (type: int)
   Param[2]: posY (type: int)
   Param[3]: color (type: Color)
 Function 209: DrawPixelV() (2 input parameters)
   Name: DrawPixelV
   Return type: void
-  Description: Draw a pixel (Vector version)
+  Description: Draw a pixel using geometry (Vector version) [Can be slow, use with care]
   Param[1]: position (type: Vector2)
   Param[2]: color (type: Color)
 Function 210: DrawLine() (5 input parameters)
@@ -2643,14 +2648,7 @@ Function 272: LoadImageRaw() (5 input parameters)
   Param[3]: height (type: int)
   Param[4]: format (type: int)
   Param[5]: headerSize (type: int)
-Function 273: LoadImageSvg() (3 input parameters)
-  Name: LoadImageSvg
-  Return type: Image
-  Description: Load image from SVG file data or string with specified size
-  Param[1]: fileNameOrString (type: const char *)
-  Param[2]: width (type: int)
-  Param[3]: height (type: int)
-Function 274: LoadImageAnim() (2 input parameters)
+Function 273: LoadImageAnim() (2 input parameters)
   Name: LoadImageAnim
   Return type: Image
   Description: Load image sequence from file (frames appended to image.data)
@@ -4242,7 +4240,7 @@ Function 503: IsModelAnimationValid() (2 input parameters)
 Function 504: UpdateModelAnimationBoneMatrices() (3 input parameters)
   Name: UpdateModelAnimationBoneMatrices
   Return type: void
-  Description: Update model animation mesh bone matrices
+  Description: Update model animation mesh bone matrices (Note GPU skinning does not work on Mac)
   Param[1]: model (type: Model)
   Param[2]: anim (type: ModelAnimation)
   Param[3]: frame (type: int)

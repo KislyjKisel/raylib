@@ -1084,6 +1084,9 @@
         </Function>
         <Function name="GetApplicationDirectory" retType="const char *" paramCount="0" desc="Get the directory of the running application (uses static string)">
         </Function>
+        <Function name="MakeDirectory" retType="int" paramCount="1" desc="Create directories (including full path requested), returns 0 on success">
+            <Param type="const char *" name="dirPath" desc="" />
+        </Function>
         <Function name="ChangeDirectory" retType="bool" paramCount="1" desc="Change working directory, return true on success">
             <Param type="const char *" name="dir" desc="" />
         </Function>
@@ -1304,12 +1307,12 @@
         </Function>
         <Function name="GetShapesTextureRectangle" retType="Rectangle" paramCount="0" desc="Get texture source rectangle that is used for shapes drawing">
         </Function>
-        <Function name="DrawPixel" retType="void" paramCount="3" desc="Draw a pixel">
+        <Function name="DrawPixel" retType="void" paramCount="3" desc="Draw a pixel using geometry [Can be slow, use with care]">
             <Param type="int" name="posX" desc="" />
             <Param type="int" name="posY" desc="" />
             <Param type="Color" name="color" desc="" />
         </Function>
-        <Function name="DrawPixelV" retType="void" paramCount="2" desc="Draw a pixel (Vector version)">
+        <Function name="DrawPixelV" retType="void" paramCount="2" desc="Draw a pixel using geometry (Vector version) [Can be slow, use with care]">
             <Param type="Vector2" name="position" desc="" />
             <Param type="Color" name="color" desc="" />
         </Function>
@@ -1705,11 +1708,6 @@
             <Param type="int" name="height" desc="" />
             <Param type="int" name="format" desc="" />
             <Param type="int" name="headerSize" desc="" />
-        </Function>
-        <Function name="LoadImageSvg" retType="Image" paramCount="3" desc="Load image from SVG file data or string with specified size">
-            <Param type="const char *" name="fileNameOrString" desc="" />
-            <Param type="int" name="width" desc="" />
-            <Param type="int" name="height" desc="" />
         </Function>
         <Function name="LoadImageAnim" retType="Image" paramCount="2" desc="Load image sequence from file (frames appended to image.data)">
             <Param type="const char *" name="fileName" desc="" />
@@ -2837,7 +2835,7 @@
             <Param type="Model" name="model" desc="" />
             <Param type="ModelAnimation" name="anim" desc="" />
         </Function>
-        <Function name="UpdateModelAnimationBoneMatrices" retType="void" paramCount="3" desc="Update model animation mesh bone matrices">
+        <Function name="UpdateModelAnimationBoneMatrices" retType="void" paramCount="3" desc="Update model animation mesh bone matrices (Note GPU skinning does not work on Mac)">
             <Param type="Model" name="model" desc="" />
             <Param type="ModelAnimation" name="anim" desc="" />
             <Param type="int" name="frame" desc="" />

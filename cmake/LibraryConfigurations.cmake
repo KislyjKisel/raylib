@@ -101,6 +101,7 @@ endif ()
 
 if (NOT ${OPENGL_VERSION} MATCHES "OFF")
     set(${SUGGESTED_GRAPHICS} "${GRAPHICS}")
+
     if (${OPENGL_VERSION} MATCHES "4.6")
 		set(GRAPHICS "GRAPHICS_API_OPENGL_46")
     elseif (${OPENGL_VERSION} MATCHES "4.3")
@@ -116,8 +117,8 @@ if (NOT ${OPENGL_VERSION} MATCHES "OFF")
     elseif (${OPENGL_VERSION} MATCHES "ES 3.0")
         set(GRAPHICS "GRAPHICS_API_OPENGL_ES3")
     endif ()
-    if ("${SUGGESTED_GRAPHICS}" AND NOT "${SUGGESTED_GRAPHICS}" STREQUAL "${GRAPHICS}")
-        message(WARNING "You are overriding the suggested GRAPHICS=${SUGGESTED_GRAPHICS} with ${GRAPHICS}! This may fail")
+    if (NOT "${SUGGESTED_GRAPHICS}" STREQUAL "" AND NOT "${SUGGESTED_GRAPHICS}" STREQUAL "${GRAPHICS}")
+        message(WARNING "You are overriding the suggested GRAPHICS=${SUGGESTED_GRAPHICS} with ${GRAPHICS}! This may fail.")
     endif ()
 endif ()
 

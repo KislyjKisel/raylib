@@ -4095,6 +4095,14 @@ return {
       returnType = "const char *"
     },
     {
+      name = "MakeDirectory",
+      description = "Create directories (including full path requested), returns 0 on success",
+      returnType = "int",
+      params = {
+        {type = "const char *", name = "dirPath"}
+      }
+    },
+    {
       name = "ChangeDirectory",
       description = "Change working directory, return true on success",
       returnType = "bool",
@@ -4633,7 +4641,7 @@ return {
     },
     {
       name = "DrawPixel",
-      description = "Draw a pixel",
+      description = "Draw a pixel using geometry [Can be slow, use with care]",
       returnType = "void",
       params = {
         {type = "int", name = "posX"},
@@ -4643,7 +4651,7 @@ return {
     },
     {
       name = "DrawPixelV",
-      description = "Draw a pixel (Vector version)",
+      description = "Draw a pixel using geometry (Vector version) [Can be slow, use with care]",
       returnType = "void",
       params = {
         {type = "Vector2", name = "position"},
@@ -5356,16 +5364,6 @@ return {
         {type = "int", name = "height"},
         {type = "int", name = "format"},
         {type = "int", name = "headerSize"}
-      }
-    },
-    {
-      name = "LoadImageSvg",
-      description = "Load image from SVG file data or string with specified size",
-      returnType = "Image",
-      params = {
-        {type = "const char *", name = "fileNameOrString"},
-        {type = "int", name = "width"},
-        {type = "int", name = "height"}
       }
     },
     {
@@ -7640,7 +7638,7 @@ return {
     },
     {
       name = "UpdateModelAnimationBoneMatrices",
-      description = "Update model animation mesh bone matrices",
+      description = "Update model animation mesh bone matrices (Note GPU skinning does not work on Mac)",
       returnType = "void",
       params = {
         {type = "Model", name = "model"},
