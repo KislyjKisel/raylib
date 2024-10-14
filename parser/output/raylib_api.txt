@@ -1721,378 +1721,378 @@ Function 134: GetApplicationDirectory() (0 input parameters)
   Return type: const char *
   Description: Get the directory of the running application (uses static string)
   No input parameters
-Function 134: MakeDirectory() (1 input parameters)
+Function 135: MakeDirectory() (1 input parameters)
   Name: MakeDirectory
   Return type: int
   Description: Create directories (including full path requested), returns 0 on success
   Param[1]: dirPath (type: const char *)
-Function 135: ChangeDirectory() (1 input parameters)
+Function 136: ChangeDirectory() (1 input parameters)
   Name: ChangeDirectory
   Return type: bool
   Description: Change working directory, return true on success
   Param[1]: dir (type: const char *)
-Function 136: IsPathFile() (1 input parameters)
+Function 137: IsPathFile() (1 input parameters)
   Name: IsPathFile
   Return type: bool
   Description: Check if a given path is a file or a directory
   Param[1]: path (type: const char *)
-Function 137: IsFileNameValid() (1 input parameters)
+Function 138: IsFileNameValid() (1 input parameters)
   Name: IsFileNameValid
   Return type: bool
   Description: Check if fileName is valid for the platform/OS
   Param[1]: fileName (type: const char *)
-Function 138: LoadDirectoryFiles() (1 input parameters)
+Function 139: LoadDirectoryFiles() (1 input parameters)
   Name: LoadDirectoryFiles
   Return type: FilePathList
   Description: Load directory filepaths
   Param[1]: dirPath (type: const char *)
-Function 139: LoadDirectoryFilesEx() (3 input parameters)
+Function 140: LoadDirectoryFilesEx() (3 input parameters)
   Name: LoadDirectoryFilesEx
   Return type: FilePathList
   Description: Load directory filepaths with extension filtering and recursive directory scan. Use 'DIR' in the filter string to include directories in the result
   Param[1]: basePath (type: const char *)
   Param[2]: filter (type: const char *)
   Param[3]: scanSubdirs (type: bool)
-Function 140: UnloadDirectoryFiles() (1 input parameters)
+Function 141: UnloadDirectoryFiles() (1 input parameters)
   Name: UnloadDirectoryFiles
   Return type: void
   Description: Unload filepaths
   Param[1]: files (type: FilePathList)
-Function 141: IsFileDropped() (0 input parameters)
+Function 142: IsFileDropped() (0 input parameters)
   Name: IsFileDropped
   Return type: bool
   Description: Check if a file has been dropped into window
   No input parameters
-Function 142: LoadDroppedFiles() (0 input parameters)
+Function 143: LoadDroppedFiles() (0 input parameters)
   Name: LoadDroppedFiles
   Return type: FilePathList
   Description: Load dropped filepaths
   No input parameters
-Function 143: UnloadDroppedFiles() (1 input parameters)
+Function 144: UnloadDroppedFiles() (1 input parameters)
   Name: UnloadDroppedFiles
   Return type: void
   Description: Unload dropped filepaths
   Param[1]: files (type: FilePathList)
-Function 144: GetFileModTime() (1 input parameters)
+Function 145: GetFileModTime() (1 input parameters)
   Name: GetFileModTime
   Return type: long
   Description: Get file modification time (last write time)
   Param[1]: fileName (type: const char *)
-Function 145: CompressData() (3 input parameters)
+Function 146: CompressData() (3 input parameters)
   Name: CompressData
   Return type: unsigned char *
   Description: Compress data (DEFLATE algorithm), memory must be MemFree()
   Param[1]: data (type: const unsigned char *)
   Param[2]: dataSize (type: int)
   Param[3]: compDataSize (type: int *)
-Function 146: DecompressData() (3 input parameters)
+Function 147: DecompressData() (3 input parameters)
   Name: DecompressData
   Return type: unsigned char *
   Description: Decompress data (DEFLATE algorithm), memory must be MemFree()
   Param[1]: compData (type: const unsigned char *)
   Param[2]: compDataSize (type: int)
   Param[3]: dataSize (type: int *)
-Function 147: EncodeDataBase64() (3 input parameters)
+Function 148: EncodeDataBase64() (3 input parameters)
   Name: EncodeDataBase64
   Return type: char *
   Description: Encode data to Base64 string, memory must be MemFree()
   Param[1]: data (type: const unsigned char *)
   Param[2]: dataSize (type: int)
   Param[3]: outputSize (type: int *)
-Function 148: DecodeDataBase64() (2 input parameters)
+Function 149: DecodeDataBase64() (2 input parameters)
   Name: DecodeDataBase64
   Return type: unsigned char *
   Description: Decode Base64 string data, memory must be MemFree()
   Param[1]: data (type: const unsigned char *)
   Param[2]: outputSize (type: int *)
-Function 149: LoadAutomationEventList() (1 input parameters)
+Function 150: LoadAutomationEventList() (1 input parameters)
   Name: LoadAutomationEventList
   Return type: AutomationEventList
   Description: Load automation events list from file, NULL for empty list, capacity = MAX_AUTOMATION_EVENTS
   Param[1]: fileName (type: const char *)
-Function 150: UnloadAutomationEventList() (1 input parameters)
+Function 151: UnloadAutomationEventList() (1 input parameters)
   Name: UnloadAutomationEventList
   Return type: void
   Description: Unload automation events list from file
   Param[1]: list (type: AutomationEventList)
-Function 151: ExportAutomationEventList() (2 input parameters)
+Function 152: ExportAutomationEventList() (2 input parameters)
   Name: ExportAutomationEventList
   Return type: bool
   Description: Export automation events list as text file
   Param[1]: list (type: AutomationEventList)
   Param[2]: fileName (type: const char *)
-Function 152: SetAutomationEventList() (1 input parameters)
+Function 153: SetAutomationEventList() (1 input parameters)
   Name: SetAutomationEventList
   Return type: void
   Description: Set automation event list to record to
   Param[1]: list (type: AutomationEventList *)
-Function 153: SetAutomationEventBaseFrame() (1 input parameters)
+Function 154: SetAutomationEventBaseFrame() (1 input parameters)
   Name: SetAutomationEventBaseFrame
   Return type: void
   Description: Set automation event internal base frame to start recording
   Param[1]: frame (type: int)
-Function 154: StartAutomationEventRecording() (0 input parameters)
+Function 155: StartAutomationEventRecording() (0 input parameters)
   Name: StartAutomationEventRecording
   Return type: void
   Description: Start recording automation events (AutomationEventList must be set)
   No input parameters
-Function 155: StopAutomationEventRecording() (0 input parameters)
+Function 156: StopAutomationEventRecording() (0 input parameters)
   Name: StopAutomationEventRecording
   Return type: void
   Description: Stop recording automation events
   No input parameters
-Function 156: PlayAutomationEvent() (1 input parameters)
+Function 157: PlayAutomationEvent() (1 input parameters)
   Name: PlayAutomationEvent
   Return type: void
   Description: Play a recorded automation event
   Param[1]: event (type: AutomationEvent)
-Function 157: IsKeyPressed() (1 input parameters)
+Function 158: IsKeyPressed() (1 input parameters)
   Name: IsKeyPressed
   Return type: bool
   Description: Check if a key has been pressed once
   Param[1]: key (type: int)
-Function 158: IsKeyPressedRepeat() (1 input parameters)
+Function 159: IsKeyPressedRepeat() (1 input parameters)
   Name: IsKeyPressedRepeat
   Return type: bool
   Description: Check if a key has been pressed again (Only PLATFORM_DESKTOP)
   Param[1]: key (type: int)
-Function 159: IsKeyDown() (1 input parameters)
+Function 160: IsKeyDown() (1 input parameters)
   Name: IsKeyDown
   Return type: bool
   Description: Check if a key is being pressed
   Param[1]: key (type: int)
-Function 160: IsKeyReleased() (1 input parameters)
+Function 161: IsKeyReleased() (1 input parameters)
   Name: IsKeyReleased
   Return type: bool
   Description: Check if a key has been released once
   Param[1]: key (type: int)
-Function 161: IsKeyUp() (1 input parameters)
+Function 162: IsKeyUp() (1 input parameters)
   Name: IsKeyUp
   Return type: bool
   Description: Check if a key is NOT being pressed
   Param[1]: key (type: int)
-Function 162: GetKeyPressed() (0 input parameters)
+Function 163: GetKeyPressed() (0 input parameters)
   Name: GetKeyPressed
   Return type: int
   Description: Get key pressed (keycode), call it multiple times for keys queued, returns 0 when the queue is empty
   No input parameters
-Function 163: GetCharPressed() (0 input parameters)
+Function 164: GetCharPressed() (0 input parameters)
   Name: GetCharPressed
   Return type: int
   Description: Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
   No input parameters
-Function 164: SetExitKey() (1 input parameters)
+Function 165: SetExitKey() (1 input parameters)
   Name: SetExitKey
   Return type: void
   Description: Set a custom key to exit program (default is ESC)
   Param[1]: key (type: int)
-Function 165: IsGamepadAvailable() (1 input parameters)
+Function 166: IsGamepadAvailable() (1 input parameters)
   Name: IsGamepadAvailable
   Return type: bool
   Description: Check if a gamepad is available
   Param[1]: gamepad (type: int)
-Function 166: GetGamepadName() (1 input parameters)
+Function 167: GetGamepadName() (1 input parameters)
   Name: GetGamepadName
   Return type: const char *
   Description: Get gamepad internal name id
   Param[1]: gamepad (type: int)
-Function 167: IsGamepadButtonPressed() (2 input parameters)
+Function 168: IsGamepadButtonPressed() (2 input parameters)
   Name: IsGamepadButtonPressed
   Return type: bool
   Description: Check if a gamepad button has been pressed once
   Param[1]: gamepad (type: int)
   Param[2]: button (type: int)
-Function 168: IsGamepadButtonDown() (2 input parameters)
+Function 169: IsGamepadButtonDown() (2 input parameters)
   Name: IsGamepadButtonDown
   Return type: bool
   Description: Check if a gamepad button is being pressed
   Param[1]: gamepad (type: int)
   Param[2]: button (type: int)
-Function 169: IsGamepadButtonReleased() (2 input parameters)
+Function 170: IsGamepadButtonReleased() (2 input parameters)
   Name: IsGamepadButtonReleased
   Return type: bool
   Description: Check if a gamepad button has been released once
   Param[1]: gamepad (type: int)
   Param[2]: button (type: int)
-Function 170: IsGamepadButtonUp() (2 input parameters)
+Function 171: IsGamepadButtonUp() (2 input parameters)
   Name: IsGamepadButtonUp
   Return type: bool
   Description: Check if a gamepad button is NOT being pressed
   Param[1]: gamepad (type: int)
   Param[2]: button (type: int)
-Function 171: GetGamepadButtonPressed() (0 input parameters)
+Function 172: GetGamepadButtonPressed() (0 input parameters)
   Name: GetGamepadButtonPressed
   Return type: int
   Description: Get the last gamepad button pressed
   No input parameters
-Function 172: GetGamepadAxisCount() (1 input parameters)
+Function 173: GetGamepadAxisCount() (1 input parameters)
   Name: GetGamepadAxisCount
   Return type: int
   Description: Get gamepad axis count for a gamepad
   Param[1]: gamepad (type: int)
-Function 173: GetGamepadAxisMovement() (2 input parameters)
+Function 174: GetGamepadAxisMovement() (2 input parameters)
   Name: GetGamepadAxisMovement
   Return type: float
   Description: Get axis movement value for a gamepad axis
   Param[1]: gamepad (type: int)
   Param[2]: axis (type: int)
-Function 174: SetGamepadMappings() (1 input parameters)
+Function 175: SetGamepadMappings() (1 input parameters)
   Name: SetGamepadMappings
   Return type: int
   Description: Set internal gamepad mappings (SDL_GameControllerDB)
   Param[1]: mappings (type: const char *)
-Function 175: SetGamepadVibration() (3 input parameters)
+Function 176: SetGamepadVibration() (3 input parameters)
   Name: SetGamepadVibration
   Return type: void
   Description: Set gamepad vibration for both motors
   Param[1]: gamepad (type: int)
   Param[2]: leftMotor (type: float)
   Param[3]: rightMotor (type: float)
-Function 176: IsMouseButtonPressed() (1 input parameters)
+Function 177: IsMouseButtonPressed() (1 input parameters)
   Name: IsMouseButtonPressed
   Return type: bool
   Description: Check if a mouse button has been pressed once
   Param[1]: button (type: int)
-Function 177: IsMouseButtonDown() (1 input parameters)
+Function 178: IsMouseButtonDown() (1 input parameters)
   Name: IsMouseButtonDown
   Return type: bool
   Description: Check if a mouse button is being pressed
   Param[1]: button (type: int)
-Function 178: IsMouseButtonReleased() (1 input parameters)
+Function 179: IsMouseButtonReleased() (1 input parameters)
   Name: IsMouseButtonReleased
   Return type: bool
   Description: Check if a mouse button has been released once
   Param[1]: button (type: int)
-Function 179: IsMouseButtonUp() (1 input parameters)
+Function 180: IsMouseButtonUp() (1 input parameters)
   Name: IsMouseButtonUp
   Return type: bool
   Description: Check if a mouse button is NOT being pressed
   Param[1]: button (type: int)
-Function 180: GetMouseX() (0 input parameters)
+Function 181: GetMouseX() (0 input parameters)
   Name: GetMouseX
   Return type: int
   Description: Get mouse position X
   No input parameters
-Function 181: GetMouseY() (0 input parameters)
+Function 182: GetMouseY() (0 input parameters)
   Name: GetMouseY
   Return type: int
   Description: Get mouse position Y
   No input parameters
-Function 182: GetMousePosition() (0 input parameters)
+Function 183: GetMousePosition() (0 input parameters)
   Name: GetMousePosition
   Return type: Vector2
   Description: Get mouse position XY
   No input parameters
-Function 183: GetMouseDelta() (0 input parameters)
+Function 184: GetMouseDelta() (0 input parameters)
   Name: GetMouseDelta
   Return type: Vector2
   Description: Get mouse delta between frames
   No input parameters
-Function 184: SetMousePosition() (2 input parameters)
+Function 185: SetMousePosition() (2 input parameters)
   Name: SetMousePosition
   Return type: void
   Description: Set mouse position XY
   Param[1]: x (type: int)
   Param[2]: y (type: int)
-Function 185: SetMouseOffset() (2 input parameters)
+Function 186: SetMouseOffset() (2 input parameters)
   Name: SetMouseOffset
   Return type: void
   Description: Set mouse offset
   Param[1]: offsetX (type: int)
   Param[2]: offsetY (type: int)
-Function 186: SetMouseScale() (2 input parameters)
+Function 187: SetMouseScale() (2 input parameters)
   Name: SetMouseScale
   Return type: void
   Description: Set mouse scaling
   Param[1]: scaleX (type: float)
   Param[2]: scaleY (type: float)
-Function 187: GetMouseWheelMove() (0 input parameters)
+Function 188: GetMouseWheelMove() (0 input parameters)
   Name: GetMouseWheelMove
   Return type: float
   Description: Get mouse wheel movement for X or Y, whichever is larger
   No input parameters
-Function 188: GetMouseWheelMoveV() (0 input parameters)
+Function 189: GetMouseWheelMoveV() (0 input parameters)
   Name: GetMouseWheelMoveV
   Return type: Vector2
   Description: Get mouse wheel movement for both X and Y
   No input parameters
-Function 189: SetMouseCursor() (1 input parameters)
+Function 190: SetMouseCursor() (1 input parameters)
   Name: SetMouseCursor
   Return type: void
   Description: Set mouse cursor
   Param[1]: cursor (type: int)
-Function 190: GetTouchX() (0 input parameters)
+Function 191: GetTouchX() (0 input parameters)
   Name: GetTouchX
   Return type: int
   Description: Get touch position X for touch point 0 (relative to screen size)
   No input parameters
-Function 191: GetTouchY() (0 input parameters)
+Function 192: GetTouchY() (0 input parameters)
   Name: GetTouchY
   Return type: int
   Description: Get touch position Y for touch point 0 (relative to screen size)
   No input parameters
-Function 192: GetTouchPosition() (1 input parameters)
+Function 193: GetTouchPosition() (1 input parameters)
   Name: GetTouchPosition
   Return type: Vector2
   Description: Get touch position XY for a touch point index (relative to screen size)
   Param[1]: index (type: int)
-Function 193: GetTouchPointId() (1 input parameters)
+Function 194: GetTouchPointId() (1 input parameters)
   Name: GetTouchPointId
   Return type: int
   Description: Get touch point identifier for given index
   Param[1]: index (type: int)
-Function 194: GetTouchPointCount() (0 input parameters)
+Function 195: GetTouchPointCount() (0 input parameters)
   Name: GetTouchPointCount
   Return type: int
   Description: Get number of touch points
   No input parameters
-Function 195: SetGesturesEnabled() (1 input parameters)
+Function 196: SetGesturesEnabled() (1 input parameters)
   Name: SetGesturesEnabled
   Return type: void
   Description: Enable a set of gestures using flags
   Param[1]: flags (type: unsigned int)
-Function 196: IsGestureDetected() (1 input parameters)
+Function 197: IsGestureDetected() (1 input parameters)
   Name: IsGestureDetected
   Return type: bool
   Description: Check if a gesture have been detected
   Param[1]: gesture (type: unsigned int)
-Function 197: GetGestureDetected() (0 input parameters)
+Function 198: GetGestureDetected() (0 input parameters)
   Name: GetGestureDetected
   Return type: int
   Description: Get latest detected gesture
   No input parameters
-Function 198: GetGestureHoldDuration() (0 input parameters)
+Function 199: GetGestureHoldDuration() (0 input parameters)
   Name: GetGestureHoldDuration
   Return type: float
   Description: Get gesture hold time in milliseconds
   No input parameters
-Function 199: GetGestureDragVector() (0 input parameters)
+Function 200: GetGestureDragVector() (0 input parameters)
   Name: GetGestureDragVector
   Return type: Vector2
   Description: Get gesture drag vector
   No input parameters
-Function 200: GetGestureDragAngle() (0 input parameters)
+Function 201: GetGestureDragAngle() (0 input parameters)
   Name: GetGestureDragAngle
   Return type: float
   Description: Get gesture drag angle
   No input parameters
-Function 201: GetGesturePinchVector() (0 input parameters)
+Function 202: GetGesturePinchVector() (0 input parameters)
   Name: GetGesturePinchVector
   Return type: Vector2
   Description: Get gesture pinch delta
   No input parameters
-Function 202: GetGesturePinchAngle() (0 input parameters)
+Function 203: GetGesturePinchAngle() (0 input parameters)
   Name: GetGesturePinchAngle
   Return type: float
   Description: Get gesture pinch angle
   No input parameters
-Function 203: UpdateCamera() (2 input parameters)
+Function 204: UpdateCamera() (2 input parameters)
   Name: UpdateCamera
   Return type: void
   Description: Update camera position for selected mode
   Param[1]: camera (type: Camera *)
   Param[2]: mode (type: int)
-Function 204: UpdateCameraPro() (4 input parameters)
+Function 205: UpdateCameraPro() (4 input parameters)
   Name: UpdateCameraPro
   Return type: void
   Description: Update camera movement/rotation
@@ -2100,36 +2100,36 @@ Function 204: UpdateCameraPro() (4 input parameters)
   Param[2]: movement (type: Vector3)
   Param[3]: rotation (type: Vector3)
   Param[4]: zoom (type: float)
-Function 205: SetShapesTexture() (2 input parameters)
+Function 206: SetShapesTexture() (2 input parameters)
   Name: SetShapesTexture
   Return type: void
   Description: Set texture and rectangle to be used on shapes drawing
   Param[1]: texture (type: Texture2D)
   Param[2]: source (type: Rectangle)
-Function 206: GetShapesTexture() (0 input parameters)
+Function 207: GetShapesTexture() (0 input parameters)
   Name: GetShapesTexture
   Return type: Texture2D
   Description: Get texture that is used for shapes drawing
   No input parameters
-Function 207: GetShapesTextureRectangle() (0 input parameters)
+Function 208: GetShapesTextureRectangle() (0 input parameters)
   Name: GetShapesTextureRectangle
   Return type: Rectangle
   Description: Get texture source rectangle that is used for shapes drawing
   No input parameters
-Function 208: DrawPixel() (3 input parameters)
+Function 209: DrawPixel() (3 input parameters)
   Name: DrawPixel
   Return type: void
   Description: Draw a pixel using geometry [Can be slow, use with care]
   Param[1]: posX (type: int)
   Param[2]: posY (type: int)
   Param[3]: color (type: Color)
-Function 209: DrawPixelV() (2 input parameters)
+Function 210: DrawPixelV() (2 input parameters)
   Name: DrawPixelV
   Return type: void
   Description: Draw a pixel using geometry (Vector version) [Can be slow, use with care]
   Param[1]: position (type: Vector2)
   Param[2]: color (type: Color)
-Function 210: DrawLine() (5 input parameters)
+Function 211: DrawLine() (5 input parameters)
   Name: DrawLine
   Return type: void
   Description: Draw a line
@@ -2138,14 +2138,14 @@ Function 210: DrawLine() (5 input parameters)
   Param[3]: endPosX (type: int)
   Param[4]: endPosY (type: int)
   Param[5]: color (type: Color)
-Function 211: DrawLineV() (3 input parameters)
+Function 212: DrawLineV() (3 input parameters)
   Name: DrawLineV
   Return type: void
   Description: Draw a line (using gl lines)
   Param[1]: startPos (type: Vector2)
   Param[2]: endPos (type: Vector2)
   Param[3]: color (type: Color)
-Function 212: DrawLineEx() (4 input parameters)
+Function 213: DrawLineEx() (4 input parameters)
   Name: DrawLineEx
   Return type: void
   Description: Draw a line (using triangles/quads)
@@ -2153,14 +2153,14 @@ Function 212: DrawLineEx() (4 input parameters)
   Param[2]: endPos (type: Vector2)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 213: DrawLineStrip() (3 input parameters)
+Function 214: DrawLineStrip() (3 input parameters)
   Name: DrawLineStrip
   Return type: void
   Description: Draw lines sequence (using gl lines)
   Param[1]: points (type: const Vector2 *)
   Param[2]: pointCount (type: int)
   Param[3]: color (type: Color)
-Function 214: DrawLineBezier() (4 input parameters)
+Function 215: DrawLineBezier() (4 input parameters)
   Name: DrawLineBezier
   Return type: void
   Description: Draw line segment cubic-bezier in-out interpolation
@@ -2168,7 +2168,7 @@ Function 214: DrawLineBezier() (4 input parameters)
   Param[2]: endPos (type: Vector2)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 215: DrawCircle() (4 input parameters)
+Function 216: DrawCircle() (4 input parameters)
   Name: DrawCircle
   Return type: void
   Description: Draw a color-filled circle
@@ -2176,7 +2176,7 @@ Function 215: DrawCircle() (4 input parameters)
   Param[2]: centerY (type: int)
   Param[3]: radius (type: float)
   Param[4]: color (type: Color)
-Function 216: DrawCircleSector() (6 input parameters)
+Function 217: DrawCircleSector() (6 input parameters)
   Name: DrawCircleSector
   Return type: void
   Description: Draw a piece of a circle
@@ -2186,7 +2186,7 @@ Function 216: DrawCircleSector() (6 input parameters)
   Param[4]: endAngle (type: float)
   Param[5]: segments (type: int)
   Param[6]: color (type: Color)
-Function 217: DrawCircleSectorLines() (6 input parameters)
+Function 218: DrawCircleSectorLines() (6 input parameters)
   Name: DrawCircleSectorLines
   Return type: void
   Description: Draw circle sector outline
@@ -2196,7 +2196,7 @@ Function 217: DrawCircleSectorLines() (6 input parameters)
   Param[4]: endAngle (type: float)
   Param[5]: segments (type: int)
   Param[6]: color (type: Color)
-Function 218: DrawCircleGradient() (5 input parameters)
+Function 219: DrawCircleGradient() (5 input parameters)
   Name: DrawCircleGradient
   Return type: void
   Description: Draw a gradient-filled circle
@@ -2205,14 +2205,14 @@ Function 218: DrawCircleGradient() (5 input parameters)
   Param[3]: radius (type: float)
   Param[4]: inner (type: Color)
   Param[5]: outer (type: Color)
-Function 219: DrawCircleV() (3 input parameters)
+Function 220: DrawCircleV() (3 input parameters)
   Name: DrawCircleV
   Return type: void
   Description: Draw a color-filled circle (Vector version)
   Param[1]: center (type: Vector2)
   Param[2]: radius (type: float)
   Param[3]: color (type: Color)
-Function 220: DrawCircleLines() (4 input parameters)
+Function 221: DrawCircleLines() (4 input parameters)
   Name: DrawCircleLines
   Return type: void
   Description: Draw circle outline
@@ -2220,14 +2220,14 @@ Function 220: DrawCircleLines() (4 input parameters)
   Param[2]: centerY (type: int)
   Param[3]: radius (type: float)
   Param[4]: color (type: Color)
-Function 221: DrawCircleLinesV() (3 input parameters)
+Function 222: DrawCircleLinesV() (3 input parameters)
   Name: DrawCircleLinesV
   Return type: void
   Description: Draw circle outline (Vector version)
   Param[1]: center (type: Vector2)
   Param[2]: radius (type: float)
   Param[3]: color (type: Color)
-Function 222: DrawEllipse() (5 input parameters)
+Function 223: DrawEllipse() (5 input parameters)
   Name: DrawEllipse
   Return type: void
   Description: Draw ellipse
@@ -2236,7 +2236,7 @@ Function 222: DrawEllipse() (5 input parameters)
   Param[3]: radiusH (type: float)
   Param[4]: radiusV (type: float)
   Param[5]: color (type: Color)
-Function 223: DrawEllipseLines() (5 input parameters)
+Function 224: DrawEllipseLines() (5 input parameters)
   Name: DrawEllipseLines
   Return type: void
   Description: Draw ellipse outline
@@ -2245,7 +2245,7 @@ Function 223: DrawEllipseLines() (5 input parameters)
   Param[3]: radiusH (type: float)
   Param[4]: radiusV (type: float)
   Param[5]: color (type: Color)
-Function 224: DrawRing() (7 input parameters)
+Function 225: DrawRing() (7 input parameters)
   Name: DrawRing
   Return type: void
   Description: Draw ring
@@ -2256,7 +2256,7 @@ Function 224: DrawRing() (7 input parameters)
   Param[5]: endAngle (type: float)
   Param[6]: segments (type: int)
   Param[7]: color (type: Color)
-Function 225: DrawRingLines() (7 input parameters)
+Function 226: DrawRingLines() (7 input parameters)
   Name: DrawRingLines
   Return type: void
   Description: Draw ring outline
@@ -2267,7 +2267,7 @@ Function 225: DrawRingLines() (7 input parameters)
   Param[5]: endAngle (type: float)
   Param[6]: segments (type: int)
   Param[7]: color (type: Color)
-Function 226: DrawRectangle() (5 input parameters)
+Function 227: DrawRectangle() (5 input parameters)
   Name: DrawRectangle
   Return type: void
   Description: Draw a color-filled rectangle
@@ -2276,20 +2276,20 @@ Function 226: DrawRectangle() (5 input parameters)
   Param[3]: width (type: int)
   Param[4]: height (type: int)
   Param[5]: color (type: Color)
-Function 227: DrawRectangleV() (3 input parameters)
+Function 228: DrawRectangleV() (3 input parameters)
   Name: DrawRectangleV
   Return type: void
   Description: Draw a color-filled rectangle (Vector version)
   Param[1]: position (type: Vector2)
   Param[2]: size (type: Vector2)
   Param[3]: color (type: Color)
-Function 228: DrawRectangleRec() (2 input parameters)
+Function 229: DrawRectangleRec() (2 input parameters)
   Name: DrawRectangleRec
   Return type: void
   Description: Draw a color-filled rectangle
   Param[1]: rec (type: Rectangle)
   Param[2]: color (type: Color)
-Function 229: DrawRectanglePro() (4 input parameters)
+Function 230: DrawRectanglePro() (4 input parameters)
   Name: DrawRectanglePro
   Return type: void
   Description: Draw a color-filled rectangle with pro parameters
@@ -2297,7 +2297,7 @@ Function 229: DrawRectanglePro() (4 input parameters)
   Param[2]: origin (type: Vector2)
   Param[3]: rotation (type: float)
   Param[4]: color (type: Color)
-Function 230: DrawRectangleGradientV() (6 input parameters)
+Function 231: DrawRectangleGradientV() (6 input parameters)
   Name: DrawRectangleGradientV
   Return type: void
   Description: Draw a vertical-gradient-filled rectangle
@@ -2307,7 +2307,7 @@ Function 230: DrawRectangleGradientV() (6 input parameters)
   Param[4]: height (type: int)
   Param[5]: top (type: Color)
   Param[6]: bottom (type: Color)
-Function 231: DrawRectangleGradientH() (6 input parameters)
+Function 232: DrawRectangleGradientH() (6 input parameters)
   Name: DrawRectangleGradientH
   Return type: void
   Description: Draw a horizontal-gradient-filled rectangle
@@ -2317,7 +2317,7 @@ Function 231: DrawRectangleGradientH() (6 input parameters)
   Param[4]: height (type: int)
   Param[5]: left (type: Color)
   Param[6]: right (type: Color)
-Function 232: DrawRectangleGradientEx() (5 input parameters)
+Function 233: DrawRectangleGradientEx() (5 input parameters)
   Name: DrawRectangleGradientEx
   Return type: void
   Description: Draw a gradient-filled rectangle with custom vertex colors
@@ -2326,7 +2326,7 @@ Function 232: DrawRectangleGradientEx() (5 input parameters)
   Param[3]: bottomLeft (type: Color)
   Param[4]: topRight (type: Color)
   Param[5]: bottomRight (type: Color)
-Function 233: DrawRectangleLines() (5 input parameters)
+Function 234: DrawRectangleLines() (5 input parameters)
   Name: DrawRectangleLines
   Return type: void
   Description: Draw rectangle outline
@@ -2335,14 +2335,14 @@ Function 233: DrawRectangleLines() (5 input parameters)
   Param[3]: width (type: int)
   Param[4]: height (type: int)
   Param[5]: color (type: Color)
-Function 234: DrawRectangleLinesEx() (3 input parameters)
+Function 235: DrawRectangleLinesEx() (3 input parameters)
   Name: DrawRectangleLinesEx
   Return type: void
   Description: Draw rectangle outline with extended parameters
   Param[1]: rec (type: Rectangle)
   Param[2]: lineThick (type: float)
   Param[3]: color (type: Color)
-Function 235: DrawRectangleRounded() (4 input parameters)
+Function 236: DrawRectangleRounded() (4 input parameters)
   Name: DrawRectangleRounded
   Return type: void
   Description: Draw rectangle with rounded edges
@@ -2350,7 +2350,7 @@ Function 235: DrawRectangleRounded() (4 input parameters)
   Param[2]: roundness (type: float)
   Param[3]: segments (type: int)
   Param[4]: color (type: Color)
-Function 236: DrawRectangleRoundedLines() (4 input parameters)
+Function 237: DrawRectangleRoundedLines() (4 input parameters)
   Name: DrawRectangleRoundedLines
   Return type: void
   Description: Draw rectangle lines with rounded edges
@@ -2358,7 +2358,7 @@ Function 236: DrawRectangleRoundedLines() (4 input parameters)
   Param[2]: roundness (type: float)
   Param[3]: segments (type: int)
   Param[4]: color (type: Color)
-Function 237: DrawRectangleRoundedLinesEx() (5 input parameters)
+Function 238: DrawRectangleRoundedLinesEx() (5 input parameters)
   Name: DrawRectangleRoundedLinesEx
   Return type: void
   Description: Draw rectangle with rounded edges outline
@@ -2367,7 +2367,7 @@ Function 237: DrawRectangleRoundedLinesEx() (5 input parameters)
   Param[3]: segments (type: int)
   Param[4]: lineThick (type: float)
   Param[5]: color (type: Color)
-Function 238: DrawTriangle() (4 input parameters)
+Function 239: DrawTriangle() (4 input parameters)
   Name: DrawTriangle
   Return type: void
   Description: Draw a color-filled triangle (vertex in counter-clockwise order!)
@@ -2375,7 +2375,7 @@ Function 238: DrawTriangle() (4 input parameters)
   Param[2]: v2 (type: Vector2)
   Param[3]: v3 (type: Vector2)
   Param[4]: color (type: Color)
-Function 239: DrawTriangleLines() (4 input parameters)
+Function 240: DrawTriangleLines() (4 input parameters)
   Name: DrawTriangleLines
   Return type: void
   Description: Draw triangle outline (vertex in counter-clockwise order!)
@@ -2383,21 +2383,21 @@ Function 239: DrawTriangleLines() (4 input parameters)
   Param[2]: v2 (type: Vector2)
   Param[3]: v3 (type: Vector2)
   Param[4]: color (type: Color)
-Function 240: DrawTriangleFan() (3 input parameters)
+Function 241: DrawTriangleFan() (3 input parameters)
   Name: DrawTriangleFan
   Return type: void
   Description: Draw a triangle fan defined by points (first vertex is the center)
   Param[1]: points (type: const Vector2 *)
   Param[2]: pointCount (type: int)
   Param[3]: color (type: Color)
-Function 241: DrawTriangleStrip() (3 input parameters)
+Function 242: DrawTriangleStrip() (3 input parameters)
   Name: DrawTriangleStrip
   Return type: void
   Description: Draw a triangle strip defined by points
   Param[1]: points (type: const Vector2 *)
   Param[2]: pointCount (type: int)
   Param[3]: color (type: Color)
-Function 242: DrawPoly() (5 input parameters)
+Function 243: DrawPoly() (5 input parameters)
   Name: DrawPoly
   Return type: void
   Description: Draw a regular polygon (Vector version)
@@ -2406,7 +2406,7 @@ Function 242: DrawPoly() (5 input parameters)
   Param[3]: radius (type: float)
   Param[4]: rotation (type: float)
   Param[5]: color (type: Color)
-Function 243: DrawPolyLines() (5 input parameters)
+Function 244: DrawPolyLines() (5 input parameters)
   Name: DrawPolyLines
   Return type: void
   Description: Draw a polygon outline of n sides
@@ -2415,7 +2415,7 @@ Function 243: DrawPolyLines() (5 input parameters)
   Param[3]: radius (type: float)
   Param[4]: rotation (type: float)
   Param[5]: color (type: Color)
-Function 244: DrawPolyLinesEx() (6 input parameters)
+Function 245: DrawPolyLinesEx() (6 input parameters)
   Name: DrawPolyLinesEx
   Return type: void
   Description: Draw a polygon outline of n sides with extended parameters
@@ -2425,7 +2425,7 @@ Function 244: DrawPolyLinesEx() (6 input parameters)
   Param[4]: rotation (type: float)
   Param[5]: lineThick (type: float)
   Param[6]: color (type: Color)
-Function 245: DrawSplineLinear() (4 input parameters)
+Function 246: DrawSplineLinear() (4 input parameters)
   Name: DrawSplineLinear
   Return type: void
   Description: Draw spline: Linear, minimum 2 points
@@ -2433,7 +2433,7 @@ Function 245: DrawSplineLinear() (4 input parameters)
   Param[2]: pointCount (type: int)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 246: DrawSplineBasis() (4 input parameters)
+Function 247: DrawSplineBasis() (4 input parameters)
   Name: DrawSplineBasis
   Return type: void
   Description: Draw spline: B-Spline, minimum 4 points
@@ -2441,7 +2441,7 @@ Function 246: DrawSplineBasis() (4 input parameters)
   Param[2]: pointCount (type: int)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 247: DrawSplineCatmullRom() (4 input parameters)
+Function 248: DrawSplineCatmullRom() (4 input parameters)
   Name: DrawSplineCatmullRom
   Return type: void
   Description: Draw spline: Catmull-Rom, minimum 4 points
@@ -2449,7 +2449,7 @@ Function 247: DrawSplineCatmullRom() (4 input parameters)
   Param[2]: pointCount (type: int)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 248: DrawSplineBezierQuadratic() (4 input parameters)
+Function 249: DrawSplineBezierQuadratic() (4 input parameters)
   Name: DrawSplineBezierQuadratic
   Return type: void
   Description: Draw spline: Quadratic Bezier, minimum 3 points (1 control point): [p1, c2, p3, c4...]
@@ -2457,7 +2457,7 @@ Function 248: DrawSplineBezierQuadratic() (4 input parameters)
   Param[2]: pointCount (type: int)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 249: DrawSplineBezierCubic() (4 input parameters)
+Function 250: DrawSplineBezierCubic() (4 input parameters)
   Name: DrawSplineBezierCubic
   Return type: void
   Description: Draw spline: Cubic Bezier, minimum 4 points (2 control points): [p1, c2, c3, p4, c5, c6...]
@@ -2465,7 +2465,7 @@ Function 249: DrawSplineBezierCubic() (4 input parameters)
   Param[2]: pointCount (type: int)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 250: DrawSplineSegmentLinear() (4 input parameters)
+Function 251: DrawSplineSegmentLinear() (4 input parameters)
   Name: DrawSplineSegmentLinear
   Return type: void
   Description: Draw spline segment: Linear, 2 points
@@ -2473,7 +2473,7 @@ Function 250: DrawSplineSegmentLinear() (4 input parameters)
   Param[2]: p2 (type: Vector2)
   Param[3]: thick (type: float)
   Param[4]: color (type: Color)
-Function 251: DrawSplineSegmentBasis() (6 input parameters)
+Function 252: DrawSplineSegmentBasis() (6 input parameters)
   Name: DrawSplineSegmentBasis
   Return type: void
   Description: Draw spline segment: B-Spline, 4 points
@@ -2483,7 +2483,7 @@ Function 251: DrawSplineSegmentBasis() (6 input parameters)
   Param[4]: p4 (type: Vector2)
   Param[5]: thick (type: float)
   Param[6]: color (type: Color)
-Function 252: DrawSplineSegmentCatmullRom() (6 input parameters)
+Function 253: DrawSplineSegmentCatmullRom() (6 input parameters)
   Name: DrawSplineSegmentCatmullRom
   Return type: void
   Description: Draw spline segment: Catmull-Rom, 4 points
@@ -2493,7 +2493,7 @@ Function 252: DrawSplineSegmentCatmullRom() (6 input parameters)
   Param[4]: p4 (type: Vector2)
   Param[5]: thick (type: float)
   Param[6]: color (type: Color)
-Function 253: DrawSplineSegmentBezierQuadratic() (5 input parameters)
+Function 254: DrawSplineSegmentBezierQuadratic() (5 input parameters)
   Name: DrawSplineSegmentBezierQuadratic
   Return type: void
   Description: Draw spline segment: Quadratic Bezier, 2 points, 1 control point
@@ -2502,7 +2502,7 @@ Function 253: DrawSplineSegmentBezierQuadratic() (5 input parameters)
   Param[3]: p3 (type: Vector2)
   Param[4]: thick (type: float)
   Param[5]: color (type: Color)
-Function 254: DrawSplineSegmentBezierCubic() (6 input parameters)
+Function 255: DrawSplineSegmentBezierCubic() (6 input parameters)
   Name: DrawSplineSegmentBezierCubic
   Return type: void
   Description: Draw spline segment: Cubic Bezier, 2 points, 2 control points
@@ -2512,14 +2512,14 @@ Function 254: DrawSplineSegmentBezierCubic() (6 input parameters)
   Param[4]: p4 (type: Vector2)
   Param[5]: thick (type: float)
   Param[6]: color (type: Color)
-Function 255: GetSplinePointLinear() (3 input parameters)
+Function 256: GetSplinePointLinear() (3 input parameters)
   Name: GetSplinePointLinear
   Return type: Vector2
   Description: Get (evaluate) spline point: Linear
   Param[1]: startPos (type: Vector2)
   Param[2]: endPos (type: Vector2)
   Param[3]: t (type: float)
-Function 256: GetSplinePointBasis() (5 input parameters)
+Function 257: GetSplinePointBasis() (5 input parameters)
   Name: GetSplinePointBasis
   Return type: Vector2
   Description: Get (evaluate) spline point: B-Spline
@@ -2528,7 +2528,7 @@ Function 256: GetSplinePointBasis() (5 input parameters)
   Param[3]: p3 (type: Vector2)
   Param[4]: p4 (type: Vector2)
   Param[5]: t (type: float)
-Function 257: GetSplinePointCatmullRom() (5 input parameters)
+Function 258: GetSplinePointCatmullRom() (5 input parameters)
   Name: GetSplinePointCatmullRom
   Return type: Vector2
   Description: Get (evaluate) spline point: Catmull-Rom
@@ -2537,7 +2537,7 @@ Function 257: GetSplinePointCatmullRom() (5 input parameters)
   Param[3]: p3 (type: Vector2)
   Param[4]: p4 (type: Vector2)
   Param[5]: t (type: float)
-Function 258: GetSplinePointBezierQuad() (4 input parameters)
+Function 259: GetSplinePointBezierQuad() (4 input parameters)
   Name: GetSplinePointBezierQuad
   Return type: Vector2
   Description: Get (evaluate) spline point: Quadratic Bezier
@@ -2545,7 +2545,7 @@ Function 258: GetSplinePointBezierQuad() (4 input parameters)
   Param[2]: c2 (type: Vector2)
   Param[3]: p3 (type: Vector2)
   Param[4]: t (type: float)
-Function 259: GetSplinePointBezierCubic() (5 input parameters)
+Function 260: GetSplinePointBezierCubic() (5 input parameters)
   Name: GetSplinePointBezierCubic
   Return type: Vector2
   Description: Get (evaluate) spline point: Cubic Bezier
@@ -2554,13 +2554,13 @@ Function 259: GetSplinePointBezierCubic() (5 input parameters)
   Param[3]: c3 (type: Vector2)
   Param[4]: p4 (type: Vector2)
   Param[5]: t (type: float)
-Function 260: CheckCollisionRecs() (2 input parameters)
+Function 261: CheckCollisionRecs() (2 input parameters)
   Name: CheckCollisionRecs
   Return type: bool
   Description: Check collision between two rectangles
   Param[1]: rec1 (type: Rectangle)
   Param[2]: rec2 (type: Rectangle)
-Function 261: CheckCollisionCircles() (4 input parameters)
+Function 262: CheckCollisionCircles() (4 input parameters)
   Name: CheckCollisionCircles
   Return type: bool
   Description: Check collision between two circles
@@ -2568,27 +2568,27 @@ Function 261: CheckCollisionCircles() (4 input parameters)
   Param[2]: radius1 (type: float)
   Param[3]: center2 (type: Vector2)
   Param[4]: radius2 (type: float)
-Function 262: CheckCollisionCircleRec() (3 input parameters)
+Function 263: CheckCollisionCircleRec() (3 input parameters)
   Name: CheckCollisionCircleRec
   Return type: bool
   Description: Check collision between circle and rectangle
   Param[1]: center (type: Vector2)
   Param[2]: radius (type: float)
   Param[3]: rec (type: Rectangle)
-Function 263: CheckCollisionPointRec() (2 input parameters)
+Function 264: CheckCollisionPointRec() (2 input parameters)
   Name: CheckCollisionPointRec
   Return type: bool
   Description: Check if point is inside rectangle
   Param[1]: point (type: Vector2)
   Param[2]: rec (type: Rectangle)
-Function 264: CheckCollisionPointCircle() (3 input parameters)
+Function 265: CheckCollisionPointCircle() (3 input parameters)
   Name: CheckCollisionPointCircle
   Return type: bool
   Description: Check if point is inside circle
   Param[1]: point (type: Vector2)
   Param[2]: center (type: Vector2)
   Param[3]: radius (type: float)
-Function 265: CheckCollisionPointTriangle() (4 input parameters)
+Function 266: CheckCollisionPointTriangle() (4 input parameters)
   Name: CheckCollisionPointTriangle
   Return type: bool
   Description: Check if point is inside a triangle
@@ -2596,14 +2596,14 @@ Function 265: CheckCollisionPointTriangle() (4 input parameters)
   Param[2]: p1 (type: Vector2)
   Param[3]: p2 (type: Vector2)
   Param[4]: p3 (type: Vector2)
-Function 266: CheckCollisionPointPoly() (3 input parameters)
+Function 267: CheckCollisionPointPoly() (3 input parameters)
   Name: CheckCollisionPointPoly
   Return type: bool
   Description: Check if point is within a polygon described by array of vertices
   Param[1]: point (type: Vector2)
   Param[2]: points (type: const Vector2 *)
   Param[3]: pointCount (type: int)
-Function 267: CheckCollisionLines() (5 input parameters)
+Function 268: CheckCollisionLines() (5 input parameters)
   Name: CheckCollisionLines
   Return type: bool
   Description: Check the collision between two lines defined by two points each, returns collision point by reference
@@ -2612,7 +2612,7 @@ Function 267: CheckCollisionLines() (5 input parameters)
   Param[3]: startPos2 (type: Vector2)
   Param[4]: endPos2 (type: Vector2)
   Param[5]: collisionPoint (type: Vector2 *)
-Function 268: CheckCollisionPointLine() (4 input parameters)
+Function 269: CheckCollisionPointLine() (4 input parameters)
   Name: CheckCollisionPointLine
   Return type: bool
   Description: Check if point belongs to line created between two points [p1] and [p2] with defined margin in pixels [threshold]
@@ -2620,7 +2620,7 @@ Function 268: CheckCollisionPointLine() (4 input parameters)
   Param[2]: p1 (type: Vector2)
   Param[3]: p2 (type: Vector2)
   Param[4]: threshold (type: int)
-Function 269: CheckCollisionCircleLine() (4 input parameters)
+Function 270: CheckCollisionCircleLine() (4 input parameters)
   Name: CheckCollisionCircleLine
   Return type: bool
   Description: Check if circle collides with a line created betweeen two points [p1] and [p2]
@@ -2628,18 +2628,18 @@ Function 269: CheckCollisionCircleLine() (4 input parameters)
   Param[2]: radius (type: float)
   Param[3]: p1 (type: Vector2)
   Param[4]: p2 (type: Vector2)
-Function 270: GetCollisionRec() (2 input parameters)
+Function 271: GetCollisionRec() (2 input parameters)
   Name: GetCollisionRec
   Return type: Rectangle
   Description: Get collision rectangle for two rectangles collision
   Param[1]: rec1 (type: Rectangle)
   Param[2]: rec2 (type: Rectangle)
-Function 271: LoadImage() (1 input parameters)
+Function 272: LoadImage() (1 input parameters)
   Name: LoadImage
   Return type: Image
   Description: Load image from file into CPU memory (RAM)
   Param[1]: fileName (type: const char *)
-Function 272: LoadImageRaw() (5 input parameters)
+Function 273: LoadImageRaw() (5 input parameters)
   Name: LoadImageRaw
   Return type: Image
   Description: Load image from RAW file data
@@ -2648,7 +2648,7 @@ Function 272: LoadImageRaw() (5 input parameters)
   Param[3]: height (type: int)
   Param[4]: format (type: int)
   Param[5]: headerSize (type: int)
-Function 273: LoadImageAnim() (2 input parameters)
+Function 274: LoadImageAnim() (2 input parameters)
   Name: LoadImageAnim
   Return type: Image
   Description: Load image sequence from file (frames appended to image.data)
