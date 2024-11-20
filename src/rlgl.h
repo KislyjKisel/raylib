@@ -193,6 +193,7 @@
 // OpenGL 4.6 uses OpenGL 3.3 Core functionality
 #if defined(GRAPHICS_API_OPENGL_46)
     #define GRAPHICS_API_OPENGL_33
+    #define GRAPHICS_API_OPENGL_43
 #endif
 
 // OpenGL ES 3.0 uses OpenGL ES 2.0 functionality (and more)
