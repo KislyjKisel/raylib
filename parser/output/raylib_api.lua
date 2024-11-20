@@ -8152,7 +8152,7 @@ return {
     },
     {
       name = "IsAudioStreamValid",
-      description = "Checks if an audio stream is valid (buffers initialized)",
+      description = "Checks if an audio stream is ready",
       returnType = "bool",
       params = {
         {type = "AudioStream", name = "stream"}
@@ -8161,7 +8161,7 @@ return {
     {
       name = "UnloadAudioStream",
       description = "Unload audio stream and free memory. Returns userdata",
-      returnType = "void*",
+      returnType = "void *",
       params = {
         {type = "AudioStream", name = "stream"}
       }

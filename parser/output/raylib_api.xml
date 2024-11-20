@@ -682,7 +682,7 @@
             <Param type="" name="" desc="" />
         </Callback>
     </Callbacks>
-    <Functions count="581">
+    <Functions count="584">
         <Function name="InitWindow" retType="void" paramCount="3" desc="Initialize window and OpenGL context">
             <Param type="int" name="width" desc="" />
             <Param type="int" name="height" desc="" />
@@ -3058,10 +3058,10 @@
             <Param type="unsigned int" name="sampleSize" desc="" />
             <Param type="unsigned int" name="channels" desc="" />
         </Function>
-        <Function name="IsAudioStreamValid" retType="bool" paramCount="1" desc="Checks if an audio stream is valid (buffers initialized)">
+        <Function name="IsAudioStreamValid" retType="bool" paramCount="1" desc="Checks if an audio stream is ready">
             <Param type="AudioStream" name="stream" desc="" />
         </Function>
-        <Function name="UnloadAudioStream" retType="void*" paramCount="1" desc="Unload audio stream and free memory. Returns userdata">
+        <Function name="UnloadAudioStream" retType="void *" paramCount="1" desc="Unload audio stream and free memory. Returns userdata">
             <Param type="AudioStream" name="stream" desc="" />
         </Function>
         <Function name="UpdateAudioStream" retType="void" paramCount="3" desc="Update audio stream buffers with data">
