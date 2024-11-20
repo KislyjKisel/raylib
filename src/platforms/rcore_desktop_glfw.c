@@ -58,6 +58,7 @@
 #if defined(_WIN32)
     typedef void *PVOID;
     typedef PVOID HANDLE;
+    #include "../external/win32_clipboard.h"
     typedef HANDLE HWND;
     #define GLFW_EXPOSE_NATIVE_WIN32
     #define GLFW_NATIVE_INCLUDE_NONE // To avoid some symbols re-definition in windows.h
@@ -65,8 +66,9 @@
 
     #if defined(SUPPORT_WINMM_HIGHRES_TIMER) && !defined(SUPPORT_BUSY_WAIT_LOOP)
         // NOTE: Those functions require linking with winmm library
-        unsigned int __stdcall timeBeginPeriod(unsigned int uPeriod);
-        unsigned int __stdcall timeEndPeriod(unsigned int uPeriod);
+        //#pragma warning(disable: 4273)
+        __declspec(dllimport) unsigned int __stdcall timeEndPeriod(unsigned int uPeriod);
+        //#pragma warning(default: 4273)
     #endif
 #endif
 #if defined(__linux__) || defined(__FreeBSD__) || defined(__OpenBSD__)
@@ -149,7 +151,7 @@ void ToggleFullscreen(void)
     {
         // Store previous window position (in case we exit fullscreen)
         CORE.Window.previousPosition = CORE.Window.position;
-        
+
         int monitorCount = 0;
         int monitorIndex = GetCurrentMonitor();
         GLFWmonitor **monitors = glfwGetMonitors(&monitorCount);
@@ -969,6 +971,30 @@ const char *GetClipboardText(void)
     return glfwGetClipboardString(platform.handle);
 }
 
+// Get clipboard image
+Image GetClipboardImage(void)
+{
+    Image image = { 0 };
+
+#if defined(SUPPORT_CLIPBOARD_IMAGE)
+#if defined(_WIN32)
+    unsigned long long int dataSize = 0;
+    void *fileData = NULL;
+    int width = 0;
+    int height = 0;
+
+    fileData  = (void*)Win32GetClipboardImageData(&width, &height, &dataSize);
+
+    if (fileData == NULL) TRACELOG(LOG_WARNING, "Clipboard image: Couldn't get clipboard data.");
+    else image = LoadImageFromMemory(".bmp", fileData, (int)dataSize);
+#else
+    TRACELOG(LOG_WARNING, "GetClipboardImage() not implemented on target platform");
+#endif
+#endif // SUPPORT_CLIPBOARD_IMAGE
+
+    return image;
+}
+
 // Show mouse cursor
 void ShowCursor(void)
 {
@@ -1064,7 +1090,7 @@ int SetGamepadMappings(const char *mappings)
 }
 
 // Set gamepad vibration
-void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor)
+void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor, float duration)
 {
     TRACELOG(LOG_WARNING, "GamepadSetVibration() not available on target platform");
 }
@@ -1293,7 +1319,7 @@ int InitPlatform(void)
     // Disable GlFW auto iconify behaviour
     // Auto Iconify automatically minimizes (iconifies) the window if the window loses focus
     // additionally auto iconify restores the hardware resolution of the monitor if the window that loses focus is a fullscreen window
-    glfwWindowHint(GLFW_AUTO_ICONIFY, 0); 
+    glfwWindowHint(GLFW_AUTO_ICONIFY, 0);
 
     // Check window creation flags
     if ((CORE.Window.flags & FLAG_FULLSCREEN_MODE) > 0) CORE.Window.fullscreen = true;
@@ -1605,7 +1631,7 @@ int InitPlatform(void)
         int monitorWidth = 0;
         int monitorHeight = 0;
         glfwGetMonitorWorkarea(monitor, &monitorX, &monitorY, &monitorWidth, &monitorHeight);
-        
+
         // Here CORE.Window.render.width/height should be used instead of CORE.Window.screen.width/height to center the window correctly when the high dpi flag is enabled.
         int posX = monitorX + (monitorWidth - (int)CORE.Window.render.width)/2;
         int posY = monitorY + (monitorHeight - (int)CORE.Window.render.height)/2;
@@ -1923,4 +1949,8 @@ static void JoystickCallback(int jid, int event)
     }
 }
 
+#ifdef _WIN32
+#   define WIN32_CLIPBOARD_IMPLEMENTATION
+#   include "../external/win32_clipboard.h"
+#endif
 // EOF

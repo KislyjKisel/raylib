@@ -514,6 +514,16 @@ const char *GetClipboardText(void)
     return NULL;
 }
 
+// Get clipboard image
+Image GetClipboardImage(void)
+{
+    Image image = { 0 };
+
+    TRACELOG(LOG_WARNING, "GetClipboardImage() not implemented on target platform");
+
+    return image;
+}
+
 // Show mouse cursor
 void ShowCursor(void)
 {
@@ -615,7 +625,7 @@ int SetGamepadMappings(const char *mappings)
 }
 
 // Set gamepad vibration
-void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor)
+void SetGamepadVibration(int gamepad, float leftMotor, float rightMotor, float duration)
 {
     TRACELOG(LOG_WARNING, "GamepadSetVibration() not implemented on target platform");
 }
@@ -768,7 +778,7 @@ int InitPlatform(void)
 
         drmModeConnector *con = drmModeGetConnector(platform.fd, res->connectors[i]);
         TRACELOG(LOG_TRACE, "DISPLAY: Connector modes detected: %i", con->count_modes);
-        
+
         // In certain cases the status of the conneciton is reported as UKNOWN, but it is still connected.
         // This might be a hardware or software limitation like on Raspberry Pi Zero with composite output.
         if (((con->connection == DRM_MODE_CONNECTED) || (con->connection == DRM_MODE_UNKNOWNCONNECTION)) && (con->encoder_id))
