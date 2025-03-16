@@ -321,7 +321,7 @@
             <Value name="FLAG_BORDERLESS_WINDOWED_MODE" integer="32768" desc="Set to run program in borderless windowed mode" />
             <Value name="FLAG_MSAA_4X_HINT" integer="32" desc="Set to try enabling MSAA 4X" />
             <Value name="FLAG_INTERLACED_HINT" integer="65536" desc="Set to try enabling interlaced video format (for V3D)" />
-            <Value name="FLAG_NOERROR_CONTEXT" integer="131072" desc="Set to try enabling NOERROR context (OpenGL 4.6 only)" />
+            <Value name="FLAG_NOERROR_CONTEXT" integer="134217728" desc="Set to try enabling NOERROR context (OpenGL 4.6 only)" />
         </Enum>
         <Enum name="TraceLogLevel" valueCount="8" desc="Trace log level">
             <Value name="LOG_ALL" integer="0" desc="Display all logs" />

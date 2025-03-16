@@ -1498,7 +1498,7 @@
         },
         {
           "name": "FLAG_NOERROR_CONTEXT",
-          "value": 131072,
+          "value": 134217728,
           "description": "Set to try enabling NOERROR context (OpenGL 4.6 only)"
         }
       ]
