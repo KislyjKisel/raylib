@@ -14,7 +14,7 @@ Define 002: RAYLIB_VERSION_MAJOR
 Define 003: RAYLIB_VERSION_MINOR
   Name: RAYLIB_VERSION_MINOR
   Type: INT
-  Value: 5
+  Value: 6
   Description: 
 Define 004: RAYLIB_VERSION_PATCH
   Name: RAYLIB_VERSION_PATCH
@@ -24,7 +24,7 @@ Define 004: RAYLIB_VERSION_PATCH
 Define 005: RAYLIB_VERSION
   Name: RAYLIB_VERSION
   Type: STRING
-  Value: "5.5"
+  Value: "5.6-dev"
   Description: 
 Define 006: __declspec(x)
   Name: __declspec(x)
@@ -796,7 +796,7 @@ Enum 08: MaterialMapIndex (11 values)
   Value[MATERIAL_MAP_IRRADIANCE]: 8
   Value[MATERIAL_MAP_PREFILTER]: 9
   Value[MATERIAL_MAP_BRDF]: 10
-Enum 09: ShaderLocationIndex (29 values)
+Enum 09: ShaderLocationIndex (30 values)
   Name: ShaderLocationIndex
   Description: Shader location index
   Value[SHADER_LOC_VERTEX_POSITION]: 0
@@ -828,7 +828,8 @@ Enum 09: ShaderLocationIndex (29 values)
   Value[SHADER_LOC_VERTEX_BONEIDS]: 26
   Value[SHADER_LOC_VERTEX_BONEWEIGHTS]: 27
   Value[SHADER_LOC_BONE_MATRICES]: 28
-Enum 10: ShaderUniformDataType (9 values)
+  Value[SHADER_LOC_VERTEX_INSTANCE_TX]: 29
+Enum 10: ShaderUniformDataType (13 values)
   Name: ShaderUniformDataType
   Description: Shader uniform data type
   Value[SHADER_UNIFORM_FLOAT]: 0
@@ -839,7 +840,11 @@ Enum 10: ShaderUniformDataType (9 values)
   Value[SHADER_UNIFORM_IVEC2]: 5
   Value[SHADER_UNIFORM_IVEC3]: 6
   Value[SHADER_UNIFORM_IVEC4]: 7
-  Value[SHADER_UNIFORM_SAMPLER2D]: 8
+  Value[SHADER_UNIFORM_UINT]: 8
+  Value[SHADER_UNIFORM_UIVEC2]: 9
+  Value[SHADER_UNIFORM_UIVEC3]: 10
+  Value[SHADER_UNIFORM_UIVEC4]: 11
+  Value[SHADER_UNIFORM_SAMPLER2D]: 12
 Enum 11: ShaderAttributeDataType (4 values)
   Name: ShaderAttributeDataType
   Description: Shader attribute data types
@@ -1443,7 +1448,7 @@ Function 083: SetShaderValueMatrix() (3 input parameters)
 Function 084: SetShaderValueTexture() (3 input parameters)
   Name: SetShaderValueTexture
   Return type: void
-  Description: Set shader uniform value for texture (sampler2d)
+  Description: Set shader uniform value and bind the texture (sampler2d)
   Param[1]: shader (type: Shader)
   Param[2]: locIndex (type: int)
   Param[3]: texture (type: Texture2D)
@@ -1903,6 +1908,11 @@ Function 168: GetCharPressed() (0 input parameters)
   Return type: int
   Description: Get char pressed (unicode), call it multiple times for chars queued, returns 0 when the queue is empty
   No input parameters
+Function 168: GetKeyName() (1 input parameters)
+  Name: GetKeyName
+  Return type: const char *
+  Description: Get name of a QWERTY key on the current keyboard layout (eg returns string 'q' for KEY_A on an AZERTY keyboard)
+  Param[1]: key (type: int)
 Function 169: SetExitKey() (1 input parameters)
   Name: SetExitKey
   Return type: void
@@ -3711,14 +3721,14 @@ Function 429: TextInsert() (3 input parameters)
   Param[3]: position (type: int)
 Function 430: TextJoin() (3 input parameters)
   Name: TextJoin
-  Return type: const char *
+  Return type: char *
   Description: Join text strings with delimiter
-  Param[1]: textList (type: const char **)
+  Param[1]: textList (type: char **)
   Param[2]: count (type: int)
   Param[3]: delimiter (type: const char *)
 Function 431: TextSplit() (3 input parameters)
   Name: TextSplit
-  Return type: const char **
+  Return type: char **
   Description: Split text into multiple strings
   Param[1]: text (type: const char *)
   Param[2]: delimiter (type: char)
@@ -3738,38 +3748,38 @@ Function 433: TextFindIndex() (2 input parameters)
   Param[2]: find (type: const char *)
 Function 434: TextToUpper() (1 input parameters)
   Name: TextToUpper
-  Return type: const char *
+  Return type: char *
   Description: Get upper case version of provided string
   Param[1]: text (type: const char *)
 Function 435: TextToLower() (1 input parameters)
   Name: TextToLower
-  Return type: const char *
+  Return type: char *
   Description: Get lower case version of provided string
   Param[1]: text (type: const char *)
 Function 436: TextToPascal() (1 input parameters)
   Name: TextToPascal
-  Return type: const char *
+  Return type: char *
   Description: Get Pascal case notation version of provided string
   Param[1]: text (type: const char *)
 Function 437: TextToSnake() (1 input parameters)
   Name: TextToSnake
-  Return type: const char *
+  Return type: char *
   Description: Get Snake case notation version of provided string
   Param[1]: text (type: const char *)
 Function 438: TextToCamel() (1 input parameters)
   Name: TextToCamel
-  Return type: const char *
+  Return type: char *
   Description: Get Camel case notation version of provided string
   Param[1]: text (type: const char *)
 Function 439: TextToInteger() (1 input parameters)
   Name: TextToInteger
   Return type: int
-  Description: Get integer value from text (negative values not supported)
+  Description: Get integer value from text
   Param[1]: text (type: const char *)
 Function 440: TextToFloat() (1 input parameters)
   Name: TextToFloat
   Return type: float
-  Description: Get float value from text (negative values not supported)
+  Description: Get float value from text
   Param[1]: text (type: const char *)
 Function 441: DrawLine3D() (3 input parameters)
   Name: DrawLine3D
@@ -4667,7 +4677,7 @@ Function 578: SetAudioStreamCallback() (3 input parameters)
 Function 579: AttachAudioStreamProcessor() (3 input parameters)
   Name: AttachAudioStreamProcessor
   Return type: void
-  Description: Attach audio stream processor to stream, receives the samples as 'float'
+  Description: Attach audio stream processor to stream, receives frames x 2 samples as 'float' (stereo)
   Param[1]: stream (type: AudioStream)
   Param[2]: processor (type: AudioCallback)
   Param[3]: userdata (type: void*)
@@ -4681,7 +4691,7 @@ Function 580: DetachAudioStreamProcessor() (3 input parameters)
 Function 581: AttachAudioMixedProcessor() (2 input parameters)
   Name: AttachAudioMixedProcessor
   Return type: void
-  Description: Attach audio stream processor to the entire audio pipeline, receives the samples as 'float'
+  Description: Attach audio stream processor to the entire audio pipeline, receives frames x 2 samples as 'float' (stereo)
   Param[1]: processor (type: AudioCallback)
   Param[2]: userdata (type: void*)
 Function 582: DetachAudioMixedProcessor() (2 input parameters)
